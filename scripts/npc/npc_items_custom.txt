@@ -1,0 +1,4024 @@
+"DOTAAbilities"
+{
+	"Version"		"1"
+	// //=================================================================================================================
+	// // Recipe: Arcane Boots 配方：奥术鞋
+	// //=================================================================================================================
+	// "item_recipe_arcane_boots2"
+	// {
+	// 	"ID"							"1005"
+
+	// 	"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+	// 	// Item Info 物品信息
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"ItemCost"						"0"		//卷轴价格
+	// 	"ItemShopTags"					""
+		
+	// 	// Recipe 配方
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"ItemRecipe"					"1"
+	// 	"ItemResult"					"item_arcane_boots2"	//物品合成结果
+	// 	"ItemRequirements"	//物品配方需求
+	// 	{
+	// 		"01"						"item_energy_booster;item_arcane_boots"
+	// 	}
+	// }
+	
+	// //=================================================================================================================
+	// // Arcane Boots II 2级奥术鞋
+	// //=================================================================================================================
+	// "item_arcane_boots2"
+	// {
+	// 	"ID"							"1006"
+
+	// 	// General
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	// 	"BaseClass"						"item_arcane_boots"
+
+	// 	// Stats		
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityCooldown"				"55.0"
+
+	// 	// Item Info
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityManaCost"				"25"	//技能魔法消耗
+	// 	"ItemCost"						"2450"	//物品价格
+	// 	"ItemShopTags"					"move_speed;boost_mana;mana_pool"	//物品商店类型：移动速度，提升魔法值，魔法补充
+	// 	"ItemQuality"					"rare"	//物品品质：稀有
+	// 	"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"	//物品提示，对观众
+	// 	"ItemDisassembleRule"			"0"		//是否可分解：0否
+	// 	"ItemAlertable"					"1"		//警惕的？
+	// 	"ItemAliases"					"mana;mb"	//物品别称
+		
+	// 	// Special	
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilitySpecial"
+	// 	{
+	// 		"01"
+	// 		{
+	// 			"var_type"				"FIELD_INTEGER"
+	// 			"bonus_movement"		"75"
+	// 		}
+	// 		"02"
+	// 		{
+	// 			"var_type"				"FIELD_INTEGER"
+	// 			"bonus_mana"			"500"
+	// 		}
+	// 		"03"
+	// 		{
+	// 			"var_type"				"FIELD_INTEGER"
+	// 			"replenish_radius"		"600"
+	// 		}
+	// 		"04"
+	// 		{
+	// 			"var_type"				"FIELD_INTEGER"
+	// 			"replenish_amount"		"250"
+	// 		}
+	// 	}
+	// }
+
+
+	//=================================================================================================================
+	// 示例
+	//=================================================================================================================
+	//"item_sword"		
+	//{		
+	//	"ID"					"1001"	//物品ID
+	//	"BaseClass"				"item_datadriven"	//物品基类
+	//	"AbilityTextureName"	"item_sword"	//图标
+	//		
+	//	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"	
+	//	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"	
+	//	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_ALL"	
+	//	"AbilityCastRange"			"500"	
+	//	"AbilityCastPoint"			"0.2"	
+	//		
+	//	"ItemCost"				"1000"			//物品价格
+	//	"ItemQuality"			"consumable"	//物品品质,consumable, common, rare, epic, artifact, secret_shop
+	//											//         消耗品[白]，常见[绿],稀有[蓝]，史诗[紫]，神器[橙]，秘密商店[青蓝]
+	//	"ItemStackable"			"1"			//是否可以堆叠
+	//	"ItemShareability"		"ITEM_FULLY_SHAREABLE"	//是否可以共享
+	//	"ItemPermanent"			"1"			//是否永久物品
+	//	"ItemInitialCharges"	"0"	//初始充能数量
+	//	"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+	//		
+	//}		
+
+	//"item_recipe_sword"	
+	//{	
+	//	"ID"	"1002"
+	//	"BaseClass"	"item_recipe_arcane_boots"	//基类，一般不需要更改
+	//	
+	//	"ItemCost"	"0"		//卷轴价格
+	//	"ItemRecipe"	"1"	//
+	//	"ItemResult"	"item_sword"	//物品合成结果
+	//	"ItemRequirements"	//物品配方需求
+	//    {	
+	//        "01"	"item_1;item_2;item_3"
+	//    }	
+	//}	
+	//=================================================================================================================
+
+
+	//=================================================================================================================
+	// Aegis of Immortality，Reincarnation，重生十字架，拿到身上会黑图标BUG，只能重写物品
+	//=================================================================================================================
+	//"item_Reincarnation"
+	//{
+	//	// General
+	//	//-------------------------------------------------------------------------------------------------------------
+	//	"ID"							"1001"	
+	//	"BaseClass"						"item_aegis"	//物品基类	
+	//	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	//	"AbilityTextureName"			"item_tombstone"	//图标
+	//	"Model"						"models/props_gameplay/aegis.mdl"		
+	//	"FightRecapLevel"				"2"
+
+
+	//	// Item Info
+	//	//-------------------------------------------------------------------------------------------------------------
+	//	"ItemCost"						"100"
+	//	"ItemShopTags"					""
+	//	"ItemQuality"					"artifact"
+	//	"SideShop"						"1"
+	//	"SecretShop"					"1"
+
+	//	// Items		
+	//	//-------------------------------------------------------------------------------------------------------------
+	//	"ItemPurchasable"		"1"		//可否买到
+	//	"ItemDroppable"			"1"		//可否丢弃
+	//	"ItemSellable"			"1"		//可否卖掉
+	//	"ItemKillable"			"0"		//是否能被攻击
+
+	//	"ItemStackable"			"0"		//是否可以堆叠
+	//	"ItemShareability"		"ITEM_NOT_SHAREABLE"	//是否可以共享
+	//	"ItemPermanent"			"0"		//是否永久物品
+	//	"ItemInitialCharges"	"1"		//初始充能数量
+	//	"ItemDeclarations"			"DECLARE_PURCHASES_IN_SPEECH" //提醒
+	//	
+	//	// Special	
+	//	//-------------------------------------------------------------------------------------------------------------
+	//	"AbilitySpecial"
+	//	{
+	//		"01"
+	//		{
+	//			"var_type"				"FIELD_FLOAT"
+	//			"reincarnate_time"		"3.0"
+	//		}
+	//		"02"
+	//		{
+	//			"var_type"				"FIELD_FLOAT"
+	//			"disappear_time"		"99999.0"
+	//		}
+	//	}
+	//}
+	//=================================================================================================================
+
+
+	//=================================================================================================================
+	// 攻击之爪1
+	//=================================================================================================================
+	"item_kata_blades1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1001"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_blades1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_blades.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1200"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"15 30 45 60 75"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_blades1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"15" //增加攻击力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 攻击之爪2
+	//=================================================================================================================
+	"item_kata_blades2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1002"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_blades2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2400"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"15 30 45 60 75"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_blades2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"30" //增加攻击力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 攻击之爪3
+	//=================================================================================================================
+	"item_kata_blades3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1003"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_blades3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3600"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"15 30 45 60 75"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_blades3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"45" //增加攻击力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 攻击之爪4
+	//=================================================================================================================
+	"item_kata_blades4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1004"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_blades4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4800"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"15 30 45 60 75"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_blades4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"60" //增加攻击力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 攻击之爪5
+	//=================================================================================================================
+	"item_kata_blades5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1005"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_blades5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"15 30 45 60 75"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_blades5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"75" //增加攻击力
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：攻击之爪2
+	//=================================================================================================================
+	"item_recipe_kata_blades2"
+	{
+		"ID"							"1007"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_blades2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_blades1;item_kata_blades1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：攻击之爪3
+	//=================================================================================================================
+	"item_recipe_kata_blades3"
+	{
+		"ID"							"1008"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_blades3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_blades1;item_kata_blades2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：攻击之爪4
+	//=================================================================================================================
+	"item_recipe_kata_blades4"
+	{
+		"ID"							"1009"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_blades4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_blades1;item_kata_blades3"
+			"02"						"item_kata_blades2;item_kata_blades2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：攻击之爪5
+	//=================================================================================================================
+	"item_recipe_kata_blades5"
+	{
+		"ID"							"1010"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_blades5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_blades1;item_kata_blades4"
+			"02"						"item_kata_blades2;item_kata_blades3"
+		}
+	}
+
+	//=================================================================================================================
+	// 加速手套1
+	//=================================================================================================================
+	"item_kata_gloves1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1011"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gloves1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_gloves.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_gloves1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10" //增加攻击速度
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 加速手套2
+	//=================================================================================================================
+	"item_kata_gloves2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1012"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gloves2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2000"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_gloves2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"20" //增加攻击速度
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 加速手套3
+	//=================================================================================================================
+	"item_kata_gloves3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1013"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gloves3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3000"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_gloves3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"30" //增加攻击速度
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 加速手套4
+	//=================================================================================================================
+	"item_kata_gloves4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1014"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gloves4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_gloves4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"40" //增加攻击速度
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 加速手套5
+	//=================================================================================================================
+	"item_kata_gloves5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1015"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gloves5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"5000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_gloves5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"50" //增加攻击速度
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：加速手套2
+	//=================================================================================================================
+	"item_recipe_kata_gloves2"
+	{
+		"ID"							"1017"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_gloves2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_gloves1;item_kata_gloves1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：加速手套3
+	//=================================================================================================================
+	"item_recipe_kata_gloves3"
+	{
+		"ID"							"1018"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_gloves3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_gloves1;item_kata_gloves2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：加速手套4
+	//=================================================================================================================
+	"item_recipe_kata_gloves4"
+	{
+		"ID"							"1019"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_gloves4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_gloves1;item_kata_gloves3"
+			"02"						"item_kata_gloves2;item_kata_gloves2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：加速手套5
+	//=================================================================================================================
+	"item_recipe_kata_gloves5"
+	{
+		"ID"							"1020"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_gloves5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_gloves1;item_kata_gloves4"
+			"02"						"item_kata_gloves2;item_kata_gloves3"
+		}
+	}
+
+	//=================================================================================================================
+	// 力量腰带1
+	//=================================================================================================================
+	"item_kata_belt1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1021"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_belt1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_belt.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1400"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_belt1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"10" //增加额外力量
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 力量腰带2
+	//=================================================================================================================
+	"item_kata_belt2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1022"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_belt2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2800"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_belt2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"20" //增加额外力量
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 力量腰带3
+	//=================================================================================================================
+	"item_kata_belt3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1023"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_belt3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4200"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_belt3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"30" //增加额外力量
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 力量腰带4
+	//=================================================================================================================
+	"item_kata_belt4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1024"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_belt4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"5600"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_belt4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"40" //增加额外力量
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 力量腰带5
+	//=================================================================================================================
+	"item_kata_belt5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1025"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_belt5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"7000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_belt5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"50" //增加额外力量
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：力量腰带2
+	//=================================================================================================================
+	"item_recipe_kata_belt2"
+	{
+		"ID"							"1027"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_belt2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_belt1;item_kata_belt1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：力量腰带3
+	//=================================================================================================================
+	"item_recipe_kata_belt3"
+	{
+		"ID"							"1028"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_belt3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_belt1;item_kata_belt2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：力量腰带4
+	//=================================================================================================================
+	"item_recipe_kata_belt4"
+	{
+		"ID"							"1029"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_belt4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_belt1;item_kata_belt3"
+			"02"						"item_kata_belt2;item_kata_belt2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：力量腰带5
+	//=================================================================================================================
+	"item_recipe_kata_belt5"
+	{
+		"ID"							"1030"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_belt5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_belt1;item_kata_belt4"
+			"02"						"item_kata_belt2;item_kata_belt3"
+		}
+	}
+
+	//=================================================================================================================
+	// 法师长袍1
+	//=================================================================================================================
+	"item_kata_robe1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1031"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_robe1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_robe.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1200"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_robe1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"10" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 法师长袍2
+	//=================================================================================================================
+	"item_kata_robe2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1032"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_robe2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2400"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_robe2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"20" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 法师长袍3
+	//=================================================================================================================
+	"item_kata_robe3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1033"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_robe3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3600"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_robe3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"30" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 法师长袍4
+	//=================================================================================================================
+	"item_kata_robe4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1034"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_robe4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4800"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_robe4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"40" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 法师长袍5
+	//=================================================================================================================
+	"item_kata_robe5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1035"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_robe5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_robe5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"50" //增加额外智力
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：法师长袍2
+	//=================================================================================================================
+	"item_recipe_kata_robe2"
+	{
+		"ID"							"1037"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_robe2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_robe1;item_kata_robe1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：法师长袍3
+	//=================================================================================================================
+	"item_recipe_kata_robe3"
+	{
+		"ID"							"1038"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_robe3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_robe1;item_kata_robe2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：法师长袍4
+	//=================================================================================================================
+	"item_recipe_kata_robe4"
+	{
+		"ID"							"1039"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_robe4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_robe1;item_kata_robe3"
+			"02"						"item_kata_robe2;item_kata_robe2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：法师长袍5
+	//=================================================================================================================
+	"item_recipe_kata_robe5"
+	{
+		"ID"							"1040"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_robe5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_robe1;item_kata_robe4"
+			"02"						"item_kata_robe2;item_kata_robe3"
+		}
+	}
+
+	//=================================================================================================================
+	// 精灵布带1
+	//=================================================================================================================
+	"item_kata_band1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1041"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_band1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_band.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_band1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"10" //增加额外敏捷
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 精灵布带2
+	//=================================================================================================================
+	"item_kata_band2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1042"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_band2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_band2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"20" //增加额外敏捷
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 精灵布带3
+	//=================================================================================================================
+	"item_kata_band3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1043"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_band3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4800"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_band3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"30" //增加额外敏捷
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 精灵布带4
+	//=================================================================================================================
+	"item_kata_band4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1044"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_band4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_band4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"40" //增加额外敏捷
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 精灵布带5
+	//=================================================================================================================
+	"item_kata_band5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1045"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_band5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"8000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"10 20 30 40 50"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_band5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"50" //增加额外敏捷
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：精灵布带2
+	//=================================================================================================================
+	"item_recipe_kata_band2"
+	{
+		"ID"							"1047"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_band2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_band1;item_kata_band1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：精灵布带3
+	//=================================================================================================================
+	"item_recipe_kata_band3"
+	{
+		"ID"							"1048"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_band3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_band1;item_kata_band2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：精灵布带4
+	//=================================================================================================================
+	"item_recipe_kata_band4"
+	{
+		"ID"							"1049"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_band4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_band1;item_kata_band3"
+			"02"						"item_kata_band2;item_kata_band2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：精灵布带5
+	//=================================================================================================================
+	"item_recipe_kata_band5"
+	{
+		"ID"							"1050"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_band5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_band1;item_kata_band4"
+			"02"						"item_kata_band2;item_kata_band3"
+		}
+	}
+
+	//=================================================================================================================
+	// 极限发球1
+	//=================================================================================================================
+	"item_kata_ultimateorb1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1051"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_ultimateorb1"	//图标
+		//"Model"						"models/heroes/lycan/lycan_ultimateorb.vmdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1500"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"5 10 15 20 25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_ultimateorb1_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"5" //增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"5" //增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"5" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 极限发球2
+	//=================================================================================================================
+	"item_kata_ultimateorb2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1052"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_ultimateorb2"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3000"	//物品价格
+		"ItemQuality"					"common"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"5 10 15 20 25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_ultimateorb2_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"10" //增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"10" //增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"10" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 极限发球3
+	//=================================================================================================================
+	"item_kata_ultimateorb3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1053"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_ultimateorb3"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4500"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"	//物品等级
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"5 10 15 20 25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_ultimateorb3_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"15" //增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"15" //增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"15" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 极限发球4
+	//=================================================================================================================
+	"item_kata_ultimateorb4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1054"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_ultimateorb4"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6000"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"5 10 15 20 25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_ultimateorb4_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"20" //增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"20" //增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"20" //增加额外智力
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// 极限发球5
+	//=================================================================================================================
+	"item_kata_ultimateorb5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1055"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_ultimateorb5"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"7500"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"	//物品等级
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"				"5 10 15 20 25"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_ultimateorb5_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"25" //增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"25" //增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"25" //增加额外智力
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 配方：极限发球2
+	//=================================================================================================================
+	"item_recipe_kata_ultimateorb2"
+	{
+		"ID"							"1057"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_ultimateorb2"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_ultimateorb1;item_kata_ultimateorb1"
+		}
+	}
+	//=================================================================================================================
+	// 配方：极限发球3
+	//=================================================================================================================
+	"item_recipe_kata_ultimateorb3"
+	{
+		"ID"							"1058"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_ultimateorb3"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_ultimateorb1;item_kata_ultimateorb2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：极限发球4
+	//=================================================================================================================
+	"item_recipe_kata_ultimateorb4"
+	{
+		"ID"							"1059"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_ultimateorb4"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_ultimateorb1;item_kata_ultimateorb3"
+			"02"						"item_kata_ultimateorb2;item_kata_ultimateorb2"
+		}
+	}
+	//=================================================================================================================
+	// 配方：极限发球5
+	//=================================================================================================================
+	"item_recipe_kata_ultimateorb5"
+	{
+		"ID"							"1060"
+		"BaseClass"						"item_recipe_arcane_boots"	//基类，一般不需要更改
+
+		// Item Info 物品信息
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"		//卷轴价格
+		"ItemShopTags"					""
+		
+		// Recipe 配方
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kata_ultimateorb5"	//物品合成结果
+		"ItemRequirements"	//物品配方需求
+		{
+			"01"						"item_kata_ultimateorb1;item_kata_ultimateorb4"
+			"02"						"item_kata_ultimateorb2;item_kata_ultimateorb3"
+		}
+	}
+
+	//=================================================================================================================
+	// 紫苑
+	//=================================================================================================================
+	"item_kata_orchid"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1061"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_orchid"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"8000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value3"				"200"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_orchid_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%Value1" 	//增加攻击力
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%Value2" 	//增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%Value2" 	//增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%Value2" 	//增加额外智力
+					"MODIFIER_PROPERTY_MANA_BONUS"				"%Value3"	//增加魔法值
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 狂战斧
+	//=================================================================================================================
+	"item_kata_bfury"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1071"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_bfury"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"9000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"75"//增加攻击力
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"5"//增加全部属性
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value3"				"10"//溅射伤害
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value4"				"150"//作用范围
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_bfury_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%Value1" 	//增加攻击力
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%Value2" 	//增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%Value2" 	//增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%Value2" 	//增加额外智力
+				}
+				"OnAttackLanded"	//攻击到某个目标时
+				{
+					"CleaveAttack"	//分裂攻击
+					{
+						"CleavePercent"				"%Value3"	//溅射伤害百分比
+						"CleaveRadius"				"%Value4"	//作用范围
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 永生大剑
+	//=================================================================================================================
+	"item_kata_rapier"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1081"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_rapier"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"16000"	//物品价格
+		"ItemQuality"					"artifact"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+
+		"ItemDeclarations"		"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS" //提醒队友,观众
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"100"//增加攻击力
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"25"//增加全部属性
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value3"				"10"//护甲
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value4"				"25"//溅射伤害
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value5"				"150"//作用范围
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_rapier_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%Value1" 	//增加攻击力
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%Value2" 	//增加额外力量
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%Value2" 	//增加额外敏捷
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%Value2" 	//增加额外智力
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%Value3" 	//增加护甲
+				}
+				"OnAttackLanded"	//攻击到某个目标时
+				{
+					"CleaveAttack"	//分裂攻击
+					{
+						"CleavePercent"				"%Value4"	//溅射伤害百分比
+						"CleaveRadius"				"%Value5"	//作用范围
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 传送口哨
+	//=================================================================================================================
+	"item_kata_whistle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1091"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"			//技能类型：目标点
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"			//目标队伍：友方
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"						//目标类型：英雄
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"		//目标状态：无敌亦可
+		"AbilityTextureName"			"item_kata_whistle"	//图标
+		//"Model"						"models/props_gameplay/aegis.mdl"
+
+		"AbilityCooldown"				"30"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		// "SecretShop"					"1"
+		"ItemKillable"					"0"		//是否能被攻击
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"100"//
+			}
+		}
+
+		"precache" //预载
+		{
+			"soundfile"					"soundevents/game_sounds_greevils.vsndevts"//预载声音文件
+			"particle_folder"			"particles/econ/courier/courier_cluckles"//预载特效文件夹
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"//声音
+			{
+				"EffectName"		"Item.GreevilWhistle"
+				"Target"			"CASTER"
+			}
+			"AttachEffect"
+			{
+				"Target"			"TARGET"
+				//"EffectName"		"particles/econ/courier/courier_cluckles/courier_cluckles_ambient_death.vpcf"//特效名称
+				"EffectName"		"particles/econ/courier/courier_drodo/courier_drodo_ambient_death.vpcf"//特效名称
+				"EffectAttachType"	"follow_origin"//附着点类型
+			}
+			"AttachEffect"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"particles/econ/courier/courier_drodo/courier_drodo_ambient_death.vpcf"//特效名称
+				"EffectAttachType"	"world_origin"//附着点类型
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/item_abilities.lua"
+				"Function"			"item_kata_whistle_Ability"
+				"Target"			"TARGET"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 治疗药膏，生命药水
+	//=================================================================================================================
+	"item_kata_salve"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1101"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		// "AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityTextureName"			"item_kata_salve"	//图标
+		"Model"							"models/props_gameplay/salve.mdl"
+
+		"AbilityCooldown"				"8"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+		//"SecretShop"					"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"3"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"200"//恢复生命值
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"3"//一次购买量，显示用
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"		"CASTER"
+				"HealAmount"	"%Value"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/item_abilities.lua"
+				"Function"			"item_kata_salve_Ability"
+			}
+			
+			"SpendCharge"	{}		//消耗物品点数
+		}
+		
+		"OnOwnerDied"//死亡掉落!
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/itemfunctions.lua"
+				"Function"			"DropItemOnDeath"
+			}
+		}
+
+		// "Modifiers"--使用药膏,测试失败
+		// {
+		// 	"item_kata_salve_M"
+		// 	{
+		// 		"IsHidden"		"0"
+		// 		"Passive"		"0"
+		// 		// "Duration"		"0.1"
+		// 		"OnDestroy"
+		// 		{
+		// 			"Heal"
+		// 			{
+		// 				"Target"		"CASTER"
+		// 				"HealAmount"	"10"
+		// 			}
+		// 		}
+		// 	}
+		// }
+	}
+
+	//=================================================================================================================
+	// 净化药水，魔法药水
+	//=================================================================================================================
+	"item_kata_clarity"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1102"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"item_kata_clarity"	//图标
+		"Model"							"models/props_gameplay/clarity.vmdl"
+
+		"AbilityCooldown"				"8"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"3"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"100"////恢复魔法值
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"					"3"//一次购买量，显示用
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CASTER"
+				"ModifierName" "item_kata_clarity_M"
+			}
+			"FireSound"
+			{
+				"Target" "CASTER"
+				"EffectName" "DOTA_Item.ClarityPotion.Activate"
+			}
+			"SpendCharge"	{}		//消耗物品点数
+		}
+
+		"Modifiers"
+		{
+			"item_kata_clarity_M"
+			{
+				"IsHidden"		"1"
+				"Passive"		"0"
+				"Duration"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%Value"
+				}
+			}
+		}
+
+		"OnOwnerDied"//死亡掉落!
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/itemfunctions.lua"
+				"Function"			"DropItemOnDeath"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// 奶酪
+	//=================================================================================================================
+	"item_kata_cheese"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1103"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"item_kata_cheese"	//图标
+		"Model"							"models/props_gameplay/cheese.vmdl"
+
+		"AbilityCooldown"				"40"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"500"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		// "ItemStockMax"					"3"		//商店最大量
+		// "ItemStockTime"					"20.0"	//商店补充时间
+
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"500"//恢复生命值
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"200"//恢复魔法值
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CASTER"
+				"ModifierName" "item_kata_cheese_M"
+			}
+			"Heal"
+			{
+				"Target"		"CASTER"
+				"HealAmount"	"%Value"
+			}
+			"SpendCharge"	{}		//消耗物品点数
+		}
+
+		"Modifiers"
+		{
+			"item_kata_cheese_M"
+			{
+				"IsHidden"		"1"
+				"Passive"		"0"
+				"Duration"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%Value2"
+				}
+			}
+		}
+
+		"OnOwnerDied"//死亡掉落!
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/itemfunctions.lua"
+				"Function"			"DropItemOnDeath"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 无敌魔瓶
+	//=================================================================================================================
+	"item_kata_InvulnerablBottle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1104"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"item_kata_InvulnerablBottle"	//图标
+		"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+		"AbilityCooldown"				"45"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"3"		//商店最大量
+		"ItemStockTime"					"15.0"	//商店补充时间
+
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"7"//持续时间
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CASTER"
+				"ModifierName" "item_kata_InvulnerablBottle_M"
+			}
+			"SpendCharge"	{}		//消耗物品点数
+		}
+
+		"Modifiers"
+		{
+			"item_kata_InvulnerablBottle_M"
+			{
+				"TextureName"	"item_kata_InvulnerablBottle"
+				"IsHidden"		"0"
+				"Passive"		"0"
+				"Duration"		"%Value"
+				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"//光环特效
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					// "MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"	//无敌
+					"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//攻击免疫状态(类似无敌)
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 治疗守卫
+	//=================================================================================================================
+	"item_kata_healing_ward"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1105"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"item_kata_healing_ward"	//图标
+		//"Model"							"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		"AbilityCooldown"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"2"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"3"		//商店最大量
+		"ItemStockTime"					"30.0"	//商店补充时间
+
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"30"//持续时间
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"400"//范围
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value3"				"2"//一次购买量，显示用
+			}
+		}
+		"AOERadius"						"%Value2"	//显示范围
+
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"			"POINT"
+				"UnitName"			"npc_healing_ward"
+				"Duration"			"%Value"//持续时间
+			}
+			"SpendCharge"	{}		//消耗物品点数
+		}
+
+		"OnOwnerDied"//死亡掉落!
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/itemfunctions.lua"
+				"Function"			"DropItemOnDeath"
+			}
+		}
+
+	}
+
+	//=================================================================================================================
+	// 快高长大蘑菇
+	//=================================================================================================================
+	"item_kata_mushroom"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1106"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_mushroom"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2000"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		//"ItemStockMax"					"5"		//商店最大量
+		//"ItemStockTime"					"30.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		//"AbilitySpecial"
+		//{
+		//	"01"
+		//	{
+		//		"var_type"				"FIELD_INTEGER"
+		//		"Value"					"30"//持续时间
+		//	}
+		//}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+
+	}
+
+	//=================================================================================================================
+	// 边路商店传送到 秘密商店
+	//=================================================================================================================
+	"item_kata_gotoSecret"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1107"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gotoSecret"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"750"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		//"ItemStockMax"					"5"		//商店最大量
+		//"ItemStockTime"					"30.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		//"AbilitySpecial"
+		//{
+		//	"01"
+		//	{
+		//		"var_type"				"FIELD_INTEGER"
+		//		"Value"					"30"//持续时间
+		//	}
+		//}
+
+		"Modifiers"
+		{
+			"item_kata_gotoSecret_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+
+	}
+
+	//=================================================================================================================
+	// 秘密商店传送到 边路商店
+	//=================================================================================================================
+	"item_kata_gotoSide"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1108"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_gotoSide"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"750"	//物品价格
+		"ItemQuality"					"consumable"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		//"ItemStockMax"					"5"		//商店最大量
+		//"ItemStockTime"					"30.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		//"AbilitySpecial"
+		//{
+		//	"01"
+		//	{
+		//		"var_type"				"FIELD_INTEGER"
+		//		"Value"					"30"//持续时间
+		//	}
+		//}
+
+		"Modifiers"
+		{
+			"item_kata_gotoSecret_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+
+	}
+
+	//=================================================================================================================
+	// Holdout Tombstone 复活墓碑
+	//=================================================================================================================
+	"item_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityName"					"item_tombstone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/props_gameplay/tombstoneb01.vmdl"
+		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
+		"precache"
+		{
+			"particle_folder" "particles/units/heroes/hero_morphling"
+		}
+
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"8.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"99999"
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemCastOnPickup"				"1"
+		"ItemKillable"					"0"
+
+	}
+
+	//=================================================================================================================
+	// 死灵书
+	//=================================================================================================================
+	"item_kata_necronomicon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1109"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"item_kata_necronomicon"	//图标
+		//"Model"							"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		"AbilityCooldown"				"60"
+		"AbilityCastPoint"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1350"	//物品价格
+		"ItemQuality"					"rare"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"1"		//商店最大量
+		"ItemStockTime"					"50.0"	//商店补充时间
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"40"//持续时间
+			}
+		}
+
+		"OnSpellStart"
+		{
+			// "ApplyModifier"
+			// {
+			// 	"Target"			"CASTER"
+			// 	"ModifierName"		"modifiers_item_kata_necronomicon1"
+			// 	"Duration"			"0.1"
+			// }
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/items/item_abilities.lua"
+				"Function"			"item_kata_necronomicon_Ability"	//根据英雄等级死灵书
+			}
+			"SpendCharge"	{}		//消耗物品点数
+		}
+
+		"Modifiers"
+		{
+			"modifiers_item_kata_necronomicon1"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Duration"				"0.1"
+				"OnDestroy"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_warrior_1"	//近程
+						"UnitCount"			"2"
+						"Target"			"CASTER"
+						"SpawnRadius"		"250"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_archer_1"	//远程
+						"UnitCount"			"1"
+						"Target"			"CASTER"
+						"SpawnRadius"		"150"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+				}
+			}
+			"modifiers_item_kata_necronomicon2"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Duration"				"0.1"
+				"OnDestroy"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_warrior_1"	//近程
+						"UnitCount"			"4"
+						"Target"			"CASTER"
+						"SpawnRadius"		"250"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_archer_1"	//远程
+						"UnitCount"			"2"
+						"Target"			"CASTER"
+						"SpawnRadius"		"150"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+				}
+			}
+			"modifiers_item_kata_necronomicon3"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Duration"				"0.1"
+				"OnDestroy"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_warrior_1"	//近程
+						"UnitCount"			"6"
+						"Target"			"CASTER"
+						"SpawnRadius"		"250"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_archer_1"	//远程
+						"UnitCount"			"4"
+						"Target"			"CASTER"
+						"SpawnRadius"		"150"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+				}
+			}
+			"modifiers_item_kata_necronomicon4"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Duration"				"0.1"
+				"OnDestroy"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_warrior_1"	//近程
+						"UnitCount"			"8"
+						"Target"			"CASTER"
+						"SpawnRadius"		"250"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_kata_necronomicon_archer_1"	//远程
+						"UnitCount"			"6"
+						"Target"			"CASTER"
+						"SpawnRadius"		"150"
+						"Duration"			"40"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target" "TARGET"
+								"EffectName" "particles/items2_fx/necronomicon_archer_manaburn.vpcf"
+								"EffectAttachType" "follow_origin"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+	}
+
+
+	//=================================================================================================================
+	// 我方单位升级
+	//=================================================================================================================
+	"item_kata_unit_up"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1200"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_unit_up"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"secret_shop"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		//"ItemStockMax"					"5"		//商店最大量
+		//"ItemStockTime"					"30.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"75"//增加生命值
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"15"//增加伤害值
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"Value3"				"1.5"//增加护甲值
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value4"				"3"//魔法抗性
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value5"				"15"//移动速度
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+
+	}
+
+	//=================================================================================================================
+	// 加强攻击，提升我方单位攻击力
+	//=================================================================================================================
+	"item_kata_unit_attack"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1201"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_unit_attack"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"secret_shop"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"1"		//商店最大量
+		"ItemStockTime"					"60.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"45"//持续时间
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+
+			"Modifiers_item_kata_unit_attack_area"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Aura"					"Modifiers_item_kata_unit_attack"
+				"Aura_Radius"			"99999" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_BASIC"// | DOTA_UNIT_TARGET_HERO
+			}
+			"Modifiers_item_kata_unit_attack"
+			{
+				"TextureName"			"item_kata_unit_attack"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "TARGET"
+						// "EffectName" 	"particles/items_fx/armlet_b.vpcf"		//臂章特效
+						"EffectName" 		"particles/generic_gameplay/rune_doubledamage_runeffect.vpcf"		//双倍符
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "70 140 203"
+						"EffectAlphaScale" "1"
+					}
+				}
+				
+				// "EffectName" 			"particles/base_attacks/generic_projectile.vpcf"//恢复特效
+				// "EffectAttachType"		"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%Value" //增加百分比攻击力
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 生命吸取，吸血能力
+	//=================================================================================================================
+	"item_kata_unit_lifesteal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1202"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_unit_lifesteal"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"secret_shop"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"1"		//商店最大量
+		"ItemStockTime"					"60.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"75"//生命吸取
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"45"//持续时间
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+
+			"Modifiers_item_kata_unit_lifesteal_area"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Aura"					"Modifiers_item_kata_unit_lifesteal"
+				"Aura_Radius"			"99999" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_BASIC" // | DOTA_UNIT_TARGET_HERO
+			}
+			"Modifiers_item_kata_unit_lifesteal"
+			{
+				"TextureName"			"item_kata_unit_lifesteal"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "TARGET"
+						"EffectName" "particles/items2_fx/mask_of_madness.vpcf"		//疯脸特效
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "70 140 203"
+						"EffectAlphaScale" "1"
+					}
+				}
+				"OnAttackLanded"	//攻击到某个目标时
+				{
+					"Lifesteal"
+					{
+						"Target"			"ATTACKER"
+						"LifestealPercent"	"%Value"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 生命回复，加速恢复
+	//=================================================================================================================
+	"item_kata_unit_health_regen"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1203"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_unit_health_regen"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"secret_shop"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"1"		//商店最大量
+		"ItemStockTime"					"60.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"15"//生命回复
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"45"//持续时间
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+
+			"Modifiers_item_kata_unit_health_regen_area"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Aura"					"Modifiers_item_kata_unit_health_regen"
+				"Aura_Radius"			"99999" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_BASIC" // | DOTA_UNIT_TARGET_HERO
+			}
+			"Modifiers_item_kata_unit_health_regen"
+			{
+				"TextureName"			"item_kata_unit_health_regen"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "TARGET"
+						"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"		//特效
+						"EffectAttachType" "follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%Value" //最大生命值百分比 ，恢复生命
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 加速移动
+	//=================================================================================================================
+	"item_kata_unit_movespeed"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1204"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_kata_unit_movespeed"	//图标
+		//"Model"						"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"secret_shop"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		//"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"0"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		"ItemStockMax"					"1"		//商店最大量
+		"ItemStockTime"					"60.0"	//商店补充时间
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value"					"75"//移动速度
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"45"//持续时间
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+
+			"Modifiers_item_kata_unit_movespeed_area"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Aura"					"Modifiers_item_kata_unit_movespeed"
+				"Aura_Radius"			"99999" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_BASIC" // | DOTA_UNIT_TARGET_HERO
+			}
+			"Modifiers_item_kata_unit_movespeed"
+			{
+				"TextureName"			"item_kata_unit_movespeed"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "TARGET"
+						"EffectName" "particles/generic_gameplay/rune_haste.vpcf"		//特效
+						"EffectAttachType" "follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%Value" //移动速度
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 雇佣兵 豺狼人刺客
+	//=================================================================================================================
+	"item_npc_gnoll_assassin"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1301"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_npc_gnoll_assassin"	//图标
+		//"Model"							"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		// "ItemStockMax"					"1"		//商店最大量
+		// "ItemStockTime"					"50.0"	//商店补充时间
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value1"					"800"	//生命值
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value2"					"50"	//攻击力
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"Value3"					"2.0"	//攻击间隔
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value4"					"5"		//护甲
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value5"					"30"	//魔法抗性
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value6"					"250"	//移动速度
+			}
+			
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 雇佣兵 石头人 远古岩石傀儡
+	//=================================================================================================================
+	"item_npc_rock_golem"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1302"	
+		"BaseClass"						"item_datadriven"	//物品基类	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_npc_rock_golem"	//图标
+		//"Model"							"models/heroes/juggernaut/jugg_healing_ward.mdl"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	//物品价格
+		"ItemQuality"					"epic"//物品品质,consumable, common, rare, epic, artifact, secret_shop
+		"SideShop"						"1"
+
+		"ItemKillable"					"0"		//是否能被攻击
+		"ItemPermanent"					"0"		//是否永久物品
+		"ItemStackable"					"1"		//是否可以堆叠
+		"ItemInitialCharges"			"1"		//初始充能数量
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"	//是否可以共享
+
+		// "ItemStockMax"					"1"		//商店最大量
+		// "ItemStockTime"					"50.0"	//商店补充时间
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value1"					"1000"	//生命值
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value2"					"50"	//攻击力
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"Value3"					"5.0"	//攻击间隔
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value4"					"5"		//护甲
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value5"					"60"	//魔法抗性
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"Value6"					"150"	//移动速度
+			}
+			
+		}
+
+		"Modifiers"
+		{
+			"item_kata_mushroom_M"
+			{
+				"OnCreated"
+				{
+					"SpendCharge"			{}		//消耗物品点数
+				}
+				"IsHidden"				"1"
+				"Passive"				"1"
+			}
+		}
+	}
+
+
+}

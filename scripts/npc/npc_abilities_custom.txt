@@ -1,0 +1,3484 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	// //=================================================================================================================
+	// // Templar Assassin: Refraction Holdout
+	// //=================================================================================================================
+	// "templar_assassin_refraction_holdout"
+	// {
+	// 	// General
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	// 	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+
+	// 	// Casting
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+	// 	// Time		
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityCooldown"				"17.0 17.0 17.0 17.0"
+
+	// 	// Cost
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilityManaCost"				"100"
+		
+	// 	// Special
+	// 	//-------------------------------------------------------------------------------------------------------------
+	// 	"AbilitySpecial"
+	// 	{
+	// 		"01"
+	// 		{
+	// 			"var_type"					"FIELD_INTEGER"
+	// 			"damage_absorb"				"200 300 400 500"
+	// 		}
+	// 		"02"
+	// 		{
+	// 			"var_type"					"FIELD_INTEGER"
+	// 			"bonus_damage"				"20 40 60 80"
+	// 		}
+	// 		"04"
+	// 		{
+	// 			"var_type"					"FIELD_FLOAT"
+	// 			"duration"					"17.0 17.0 17.0 17.0"
+	// 		}
+	// 	}
+	// }
+
+	//=================================================================================================================
+	// 给予英雄经验与金钱
+	//=================================================================================================================
+	"dota_ability_get_xp"
+	{
+		"BaseClass"          			    "ability_datadriven"
+		// "AbilityName"           			"dota_ability_xp_granter"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"Modifiers"
+		{
+			"modifier_dota_ability_get_xp"
+			{
+				"IsHidden"				"0"
+				"Passive"				"0"
+				"ThinkInterval"			"1"
+				"TextureName"	"item_hand_of_midas"
+
+				"OnIntervalThink"
+				{
+					"GrantXPGold"
+					{
+						"Target"		"CASTER"
+						"XPAmount"		"25"
+						"SplitEvenly"	"0"
+						"GoldAmount"	"25"
+						"ReliableGold"	"0"
+					}
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/msg_fx/msg_gold.vpcf"		//主要特效
+						"EffectAttachType" "follow_origin"
+						"ControlPoints"
+						{
+							"01"		"0 25 2"	//第一个数值，0为+号，1为-号；第二个数值，需要显示的数字；第三个数值，后置图标，
+							"02"		"5 4 0"		//第一个数值，显示多久；第二个数值，显示位数；第三个数值，没用，填0
+							"03"		"211 168 9"	//颜色值，RGB
+						}
+						// "EffectLifeDurationScale" "1"
+						// "EffectColorA" "255 255 0"
+						// "EffectAlphaScale" "1"
+					}
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/items2_fx/hand_of_midas.vpcf"		//主要特效
+						"EffectAttachType" "follow_origin"
+						"ControlPointEntities"	//=============施法者和目标中间的连线
+						{
+							"CASTER"		""	//"attach_hitloc"
+							"CASTER"		""	//"attach_mouth"
+						}
+					}
+					"FireSound"
+					{
+						"EffectName"			"lockjaw_Courier.gold_big"
+						// "EffectName"			"ui.inv_drop_chest"
+						"Target"				"CASTER"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"		//主要特效
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "255 255 0"
+						"EffectAlphaScale" "1"
+					}
+				}
+				
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Glacier Arrows 卓尔游侠：霜冻之箭。法球，击中减速击退，有几率冰封
+	//=================================================================================================================
+	"drowranger_glacier_arrows"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"drow_ranger_frost_arrows"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"625"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+		//"AbilityDuration"				"0.25 0.5 0.75 1.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"0 0 0 0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"6"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_glacier_arrow"
+			{
+				"Passive"               "1"
+				"IsHidden"				"1"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+					//"ProjectileName"	"drow_frost_arrow"
+					"ProjectileName"	"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+					"CastAttack"		"1"
+				}
+
+				"OnOrbFire"
+				{
+					"SpendMana"
+					{
+						"Mana"					"%AbilityManaCost"
+					}
+					"FireSound"
+					{
+						"EffectName"			"Hero_DrowRanger.FrostArrows"
+						"Target"				"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"Duration"				"1.5"
+						"ModifierName"			"modifier_glacier_arrow_owner"	//小黑获得1.5秒的任意伤害击退
+					}
+
+				}
+
+				"OnOrbImpact"
+				{
+					// "RemoveModifier"
+					// {
+					// 	"Target"			"TARGET"
+					// 	"ModifierName"		"modifier_knockback"
+					// }
+					
+					"ApplyModifier"		//添加源 冰箭BUFF
+					{
+						"Target"			"TARGET"
+						"ModifierName"		"modifier_drow_ranger_frost_arrows_slow"
+						"Duration"			"%slow_duration"
+					}
+					"Damage"			//增加伤害
+					{
+						"Target"			"TARGET"
+						"Damage"			"%damage"
+						"Type"				"DAMAGE_TYPE_PHYSICAL"
+					}
+				}
+			}
+
+			"modifier_glacier_arrow_owner"
+			{
+				"IsHidden"				"1"
+				"OnDealDamage"	//伤害到某单位时
+				{
+					"Random"
+					{
+						"Chance" 			"%frostbite_chance"
+						"PseudoRandom"		"DOTA_PSEUDO_RANDOM_ITEM_MKB"
+						"OnSuccess"
+						{
+							"ApplyModifier"		//添加源 冰女冰冻BUFF
+							{
+								"Target"			"UNIT"
+								"ModifierName"		"modifier_crystal_maiden_frostbite"
+								"Duration"			"%slow_duration"
+							}
+						}
+						// "OnFailure"
+						// {
+						// }
+					}
+					"Knockback"			//击退
+					{
+						"Target"		"UNIT"
+						"Center"		"ATTACKER"
+						"Duration"		"0.1"
+						"Distance"		"25"
+						"Height"		"0"
+						"ShouldStun"	"0"
+					}
+				}
+				// "Properties"
+				// {
+				// 	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage" //增加攻击力
+				// }
+			}
+		}
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"15 25 35 45 55 65 75"		//增加攻击力
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frostbite_chance"				"15 25 30 40 50 60 70"		//冰封概率
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"1.0 1.5 2.0 2.25 2.5 2.75 3"	//持续时间
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"frost_arrows_movement_speed"	"-100"	//降低移动速度
+			}
+
+		}
+	}
+
+	//=================================================================================================================
+	// Multishot 卓尔游侠：多重射击
+	//=================================================================================================================
+	"drowranger_multishot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"drowranger_multishot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"12 15 18 20 21 22 23"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target" 			"CASTER"
+				"ModifierName"		"multishot_buff"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target" 			"CASTER"
+				"ModifierName"		"multishot_buff"
+			}
+		}
+
+		// "OnUpgrade"	//添加这个是防止BUG。因为开启这个技能，然后升级技能， 减少攻击速度不会增加，而额外箭矢则还会升级。
+		// {			//但是这样，一升级技能，就会添加BUFF。给玩家造成困扰
+		// 	"RemoveModifier"
+		// 	{
+		// 		"Target" 			"CASTER"
+		// 		"ModifierName"		"multishot_buff"
+		// 	}
+		// 	"ApplyModifier"
+		// 	{
+		// 		"Target" 			"CASTER"
+		// 		"ModifierName"		"multishot_buff"
+		// 	}
+		// }
+
+
+		"Modifiers"
+		{
+			"multishot_buff"
+			{
+				//"Passive"				"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"		//主要特效
+						"EffectAttachType" "follow_overhead"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "0 120 150"
+						"EffectAlphaScale" "1"
+					}
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"		//主要特效
+						"EffectAttachType" "follow_overhead"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "0 120 150"
+						"EffectAlphaScale" "1"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%reduction_attack_speed"	//减少攻击速度
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%focusfire_damage_reduction" //攻击伤害减少
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"//添加这个是防止BUG。因为开启这个技能，然后升级技能， 减少攻击速度不会增加，而额外箭矢则还会升级。
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"multishot_buff"
+					}
+					"ApplyModifier"//添加这个是防止BUG。因为开启这个技能，然后升级技能， 减少攻击速度不会增加，而额外箭矢则还会升级。
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"multishot_buff"
+					}
+
+					"SpendMana"
+					{
+						"Mana"	"%AbilityManaCost"
+					}
+					"CreateBonusAttack" //额外攻击
+					{
+						"Target"
+						{
+							"Center"		"TARGET"
+							"Radius"		"%bonus_arrow_radius"
+							"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+							"MaxTargets"	"%bonus_arrows"
+							"Random"		"0"
+						}
+					}
+				}
+			}
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_damage_reduction"	"-50 -40 -30 -20 -10 -5 0"			//攻击伤害减少%
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"reduction_attack_speed"		"-50 -65 -80 -95 -110 -120 -130"	//减少攻击速度
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_arrow_radius"			"550 575 600 625 650 675 700"		//额外射箭范围
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_arrows"					"3 4 5 6 7 8 9"						//额外箭矢数量
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Drow Ranger's puzzle_illusion 卓尔游侠：迷惑幻象
+	//=================================================================================================================
+	"drowranger_puzzle_illusion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"            "drowranger_puzzle_illusion"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1100"
+		"AbilityCastPoint"				"0.2"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15.0 10.0 7.0 5.0 5.0 5.0 5.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"				"POINT"
+				"EffectName"			"particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
+				"MoveSpeed"				"1600"
+				//"StartPosition"			"attach_attack1"
+				"StartRadius"			"125"
+				"EndRadius"				"125"
+				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+				"HasFrontalCone"		"0"
+				"ProvidesVision"		"1"
+				"VisionRadius"			"300"
+			}
+			"FireSound"
+			{
+				"EffectName"			"Hero_DrowRanger.Silence"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"				"false"
+
+			"Knockback"			//击退
+			{
+				"Target"				"TARGET"
+				"Center"				"PROJECTILE"
+				"Duration"				"0.3"
+				"Distance"				"50"
+				"Height"				"0"
+				"ShouldStun"			"0"
+			}
+		}
+		"OnProjectileFinish"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"			"npc_drowranger_puzzle_illusion"
+				"UnitCount"			"1"
+				"SpawnRadius"		"0"
+				"Target"			"POINT"
+				"Duration"			"%duration"
+				
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"TARGET"
+						"ModifierName"		"drowranger_puzzle_illusion_blade"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"drowranger_puzzle_illusion_blade"
+			{
+				"TextureName"				"drowranger_puzzle_illusion_blade"
+				"OnAttacked"
+				{
+					"Damage"
+					{
+						"Target"			"ATTACKER"
+						"Type"				"DAMAGE_TYPE_PHYSICAL"
+						"Damage"			"%damage"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"	//开始闪的一下
+						"EffectAttachType"	"follow_overhead"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA"		"0 120 150"
+						"EffectAlphaScale"	"1"
+					}
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/items_fx/blademail.vpcf"				//荆棘,长刺太多，不好看。。
+						"EffectAttachType"	"start_at_customorigin"
+						//"EffectLifeDurationScale" "1"
+						"EffectColorA"		"0 120 150"
+						"EffectAlphaScale"	"0"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TOOLTIP"	"%damage_tooltip" 
+				}
+			}
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"				//持续时间
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"15 25 35 45 55 65 75"		//反击伤害
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_tooltip"			"15 25 35 45 55 65 75"		//反击伤害
+			}
+		}
+	}
+	"drowranger_puzzle_illusion_call"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"axe_berserkers_call"
+		"AbilityTextureName"            "drowranger_puzzle_illusion_call"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"MaxLevel"						"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"	
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}	
+		}
+	}
+
+
+	//=================================================================================================================
+	// Ability: Drow Ranger's Marksmanship 卓尔游侠：射手天赋
+	//=================================================================================================================
+	"drowranger_marksmanship"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"drow_ranger_marksmanship"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"4"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"marksmanship_buff"	//加敏捷与特效的
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"	//开始闪的一下
+						"EffectAttachType" "follow_overhead"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "0 120 150"
+						"EffectAlphaScale" "1"
+					}
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/items2_fx/rod_of_atos_debuff_ground.vpcf"			//主要特效，光圈
+						"EffectAttachType" "follow_origin"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "0 120 150"
+						"EffectAlphaScale" "1"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%marksmanship_agility_bonus" //增加额外敏捷
+				}
+			}
+			"marksmanship_on_move"//
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"OnUnitMoved"//移动的时候
+				{
+					"ApplyModifier"		//添加闪避BUFF
+					{
+						"Target"			"CASTER"
+						"ModifierName"		"marksmanship_move_buff"
+						"Duration"			"0.2"
+					}
+				}
+			}
+			"marksmanship_move_buff"//闪避BUff
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"	//增加闪避
+				}
+			}
+
+			"marksmanship_buff_self_area"	//让敌方获得光环
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Aura"					"marksmanship_buff_enemy_area"
+				"Aura_Radius"			"%radius" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+			}
+
+			"marksmanship_buff_enemy_area"	//敌方获得光环，会使卓尔失去敏捷
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Aura"					"marksmanship_buff_remove"
+				"Aura_Radius"			"%radius" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+			}
+
+			"marksmanship_buff_remove"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"ThinkInterval"			".2"
+				"OnIntervalThink"
+				{
+					"RemoveModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"marksmanship_buff"
+					}
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"marksmanship_buff_add"
+						"Duration" 			"1"
+					}
+				}
+			}
+			"marksmanship_buff_add"
+			{
+				"IsHidden"				"0"
+				"Passive"				"0"
+				"IsDebuff"				"1"
+				"TextureName"	"drowranger_marksmanship_remove"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"marksmanship_buff"
+					}
+				}
+			}
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"marksmanship_agility_bonus"	"40 60 80 120"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"175"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"evasion"						"60 70 80 85"
+			}
+
+		}
+	}
+
+
+	//=================================================================================================================
+	// Windrunner: Focus Fire 风行：集中火力。
+	//=================================================================================================================
+	"kata_focusfire"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"windrunner_focusfire"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"ItemBaseLevel"					"0"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"4"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0 35.0 30.0 20.0"
+		"AbilityDuration"				"20.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 125 150 175"
+
+		
+		"precache"
+		{
+			"particle_folder" "particles/econ/generic/generic_buff_1"
+		}
+
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CASTER"
+				"ModifierName" "focusfire_buff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"focusfire_buff"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target" "CASTER"
+						"EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectAttachType" "follow_overhead"
+						"EffectLifeDurationScale" "1"
+						"EffectColorA" "25 150 0"
+						"EffectAlphaScale" "1"
+					}
+				}
+
+				"Duration" "%focusfire_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%focusfire_damage_reduction"
+				}
+				"OnAttackLanded"
+				{
+				
+					"Random"
+					{
+						"Chance" "%bonus_arrow_chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_ITEM_MKB"
+						"OnSuccess"
+						{
+							"CreateBonusAttack" //额外攻击
+							{
+								"Target"
+								{
+									"Center"		"TARGET"
+									"Radius"		"%bonus_arrow_radius"
+									"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+									"MaxTargets"	"%bonus_arrows"
+									"Random"		"1"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_duration"			"20"				//持续时间
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_damage_reduction"	"-50 -40 -30 -20"		//基础攻击力降低
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cooldown_scepter"				"15.0 15.0 15.0 15.0"	//A帐冷却时间。禁用
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attack_speed"			"300"				//额外攻击速度
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_arrow_chance"			"50 60 70 80"			//额外射箭几率
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_arrow_radius"			"200 250 300 350"		//额外射箭范围
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_arrows"					"1 1 2 2"				//额外箭矢数量
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Wisp: Life Drain 小精灵 精灵守卫 艾欧：生命吸取
+	//=================================================================================================================
+	"wisp_life_drain"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"pugna_life_drain"
+		"AbilityTextureName"            "wisp_life_drain"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1100"
+		"AbilityCastPoint"				"0.2"
+		"AbilityChannelTime"			"10 15 20 25"	//持续时间。如果填入%channel_time_tooltip(类似这样)，将读取不了持续时间。
+													//并且会出现有趣的BUG。施法者移动也不会打断持续施法，直到超过最远距离。但是这样施法声音会一直存在，这实在不好。
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0 6.0 2.0 0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 175 225 275"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_drain"				"120 160 200 240"		//汲取量
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_drain_scepter"		"180 240 300 340"		//A杖汲取速率
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_cooldown"			"0.0"		//A杖冷却时间
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_rate"					"0.25"	//吸取速率
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"		//A杖额外释放距离
+				"bonus_range_scepter"		"50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"channel_time_tooltip"		"10 15 20 25"			//持续时间
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: 树精卫士：逆生种子
+	//=================================================================================================================
+	"treant_seed"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"treant_leech_seed"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"7"
+
+		// Ability-Data
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"50"
+		"AbilityCastRange"				"0"	//650
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AOERadius"						"%radius"
+		"AbilityDamage"					"50 90 130 170 210 250 290"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"			"npc_furion_treant"	
+				"UnitCount"			"1"
+				"Target"			"POINT"
+				"SpawnRadius"		"0"
+				"Duration"			"10"//持续时间
+				"OnSpawn"
+				{
+					"FireEffect"
+					{
+						"Target"			"CASTER"
+						"EffectName"		"particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPointEntities"	//=============施法者和目标中间的连线
+						{
+							"CASTER"		"attach_attack1"	//"attach_hitloc"
+							"TARGET"		"attach_hitloc"		//"attach_mouth"
+						}
+					}
+					"ApplyModifier"
+					{
+						"Target" 			"TARGET"
+						"Duration"			"0.1"				//0.1秒后移除 相位状态
+						"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+					}
+					// "ApplyModifier"			//树人等级，增加攻击血量
+					// {
+					// 	"Target" 			"TARGET"
+					// 	"ModifierName"		"modifiers_natures_protection_spawnunit_bonus"
+					// }
+					"RunScript"//树人等级，增加攻击血量
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+						"Function"		"SeedSpawnUnitBonus"
+					}
+				}
+			}
+			"Damage"
+			{
+				"Type" "DAMAGE_TYPE_PHYSICAL"
+				"Damage" "%AbilityDamage"
+				"Target"
+				{
+					"Center" "POINT"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_CREEP"
+				}
+			}
+			"Stun"
+			{
+				"Duration"			"%stun_duration"
+				"Target"
+				{
+					"Center" "POINT"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_CREEP"
+				}
+			}
+			"Knockback"
+			{
+				"Target"
+				{
+					"Center" "POINT"
+					"Radius" "%radius - 50"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
+				}
+				"Center"	"POINT"
+				"Duration"	"0.25"
+				"Distance"	"%radius - 75"
+				"Height"	"25"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Treant.LeechSeed.Cast"	//"wave"			")weapons/hero/treant/overgrowth_cast.wav"
+				"Target"			"CASTER"
+			}
+		}
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1 1.5 2 2.5 3 3.5 4"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"125"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: 树精卫士：扎根
+	//=================================================================================================================
+	"treant_root"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"treant_natures_guise"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"7"
+
+		// Ability-Data
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+		"AbilityChannelTime"			"1.5"
+		"AbilityCastRange"				"500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Treant.Overgrowth.Cast"	//"wave"			")weapons/hero/treant/overgrowth_cast.wav"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+				"Function"		"NaturesTest"
+			}
+		}
+		
+		"OnChannelSucceeded"	//当持续性施法成功
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+				"Function"		"RootOnChannelSucceeded"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_root"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_root_spawnunit"
+			}
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_root_channel_start"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Treant.Overgrowth.CastAnim"
+				"Target"		"CASTER"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_root"
+			{
+				// "Duration"		"duration"
+				"IsHidden"				"1"
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"			//发光，缠绕
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+						// "EffectLifeDurationScale"	"1"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_cast_growing_wood.vpcf"	//树根
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+					}
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_base.vpcf"		//范围光圈
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+						"ControlPoints"
+						{
+							"00" "0 0 5"
+							"01" "%radius 1 1"
+						}
+					}
+					"ApplyModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_root_heal_area"
+					}
+				}
+
+				"ThinkInterval"			"%think_interval"
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Treant.Overgrowth.Target"
+						"Target"		"CASTER"
+					}
+					// "FireEffect"
+					// {
+					// 	"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"		//缠绕，特效遗留会变卡
+					// 	"EffectAttachType"	"follow_origin"
+					// 	"Target"			"CASTER"
+					// }
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_cast_growing_wood.vpcf"	//树根
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+					}
+					"Damage"
+					{
+						"Type" 		"DAMAGE_TYPE_MAGICAL"
+						"Damage" 	"%damage"
+						"Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
+						}
+					}
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+						"Function"		"RootSelfDamage"
+						"self_damage"	"%self_damage"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"			"-50"		//按百分比减少受到的物理伤害
+				}
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"				"MODIFIER_STATE_VALUE_ENABLED"		//缴械状态
+					"MODIFIER_STATE_ROOTED"					"MODIFIER_STATE_VALUE_ENABLED"		//被缠绕状态
+				}
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_root_spawnunit"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_root_heal_area"
+					}
+				}
+			}
+			"modifier_root_spawnunit"
+			{
+				"Duration"		"%spawnunit_time"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+						"Function"		"RootSpawnUnit"
+					}
+				}
+			}
+			"modifier_root_heal_area"	//为了排除自己
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Aura"					"modifier_root_heal_buff"
+				"Aura_Radius"			"%radius" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+				"Aura_ApplyToParent"	"0"	//排除自己
+			}
+
+			"modifier_root_heal_buff"
+			{
+				"ThinkInterval"			"%think_interval"
+				"OnIntervalThink"
+				{
+					"Heal"
+					{
+						"Target" 		"TARGET"
+						"HealAmount"	"%heal"	
+					}
+
+				}
+			}
+
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"self_damage"		"30 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"15 20 25 30 35 40 45"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heal"				"15 20 25 30 35 40 45"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"spawnunit_time"	"5.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"think_interval"	"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Multishot 树精卫士：扎根_起身
+	//=================================================================================================================
+	"treant_root_stop"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"treant_root_stop"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"7"
+
+		// Ability-Data
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		"AbilityChannelTime"			"1.5"
+		"AbilityCastRange"				"500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnChannelSucceeded"	//当持续性施法成功
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+				"Function"		"RootOnChannelSucceeded"
+			}
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_root"
+			}
+		}
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"self_damage"		"30 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"15 20 25 30 35 40 45"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heal"				"15 20 25 30 35 40 45"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"spawnunit_time"	"5.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"think_interval"	"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: 树精卫士：大自然的保护
+	//=================================================================================================================
+	"treant_natures_protection"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"furion_force_of_nature"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AOE"
+		"MaxLevel"						"7"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifiers_natures_protection_buff"
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"CASTER"
+						"EffectName"		"particles/items2_fx/tranquil_boots_healing_core.vpcf"			//主要特效，绿色闪点
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+						"Function"		"NaturesProtectionOnAttacked"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus" //增加护甲
+				}
+			}
+
+			"modifiers_natures_protection_spawnunit"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Duration"				"0.1"
+				"OnDestroy"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"			"npc_furion_treant"	
+						"UnitCount"			"1"
+						"Target"			"CASTER"
+						"SpawnRadius"		"75"
+						"Duration"			"20"//持续时间
+						"OnSpawn"
+						{
+							"FireEffect"
+							{
+								"Target"			"CASTER"
+								"EffectName"		"particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+								"EffectAttachType"	"follow_origin"
+								"ControlPointEntities"	//=============施法者和目标中间的连线
+								{
+									"CASTER"		""	//"attach_hitloc"
+									"TARGET"		""	//"attach_mouth"
+								}
+							}
+							"FireSound"
+							{
+								"EffectName"		"Hero_Treant.LeechSeed.Cast"
+								"Target" 			"CASTER"
+							}
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"Duration"			"0.1"				//0.1秒后移除 相位状态
+								"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+							}
+							"ApplyModifier"			//树人等级，增加攻击血量
+							{
+								"Target" 			"TARGET"
+								"ModifierName"		"modifiers_natures_protection_spawnunit_bonus"
+							}
+						}
+					}
+				}
+			}
+
+			"modifiers_natures_protection_spawnunit_bonus"
+			{
+				"IsHidden"				"0"
+				"Passive"				"0"
+				"TextureName"			"treant_leech_seed"
+
+				"OnCreated"
+				{
+					"RunScript"		//增加生命值
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/hero_treant.lua"
+						"Function"		"NaturesProtectionHealthBonus"
+						"Target"		"TARGET"
+						"health_bonus"	"%health_bonus"
+					}
+				}
+
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_HEALTH_BONUS"			"%health_bonus"		//生命值，只有英雄可用?(or施法者可用?)
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"		//攻击力
+				}
+				"OnDestroy"
+				{
+					"Heal"
+					{
+						"Target"		"CASTER"
+						"HealAmount"	"%heal_amount"
+					}
+				}
+			}
+
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"armor_bonus"					"1 1.5 2 2.5 3 3.5 4"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_bonus"					"75 125 200 250 300 350 400"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_bonus"					"25 35 45 50 60 65 70"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"20"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"heal_amount"					"75 100 150 200 250 300 350"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: 树精卫士：藤蔓
+	//=================================================================================================================
+	"treant_vines"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"treant_overgrowth"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"	// | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"4"
+
+		// Ability-Data
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"120"
+		// "AbilityChannelTime"			"0.5"
+		"AbilityCastRange"				"450"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Data-Driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		// "OnChannelFinish"
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Treant.LivingArmor.Cast"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile" 		"scripts/vscripts/abilities/hero_treant.lua"
+				"Function"			"VinesOnSpellStart"
+				"health_bonus"		"%health_bonus"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_vines"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+
+				"ThinkInterval"			"%think_interval"
+				"OnIntervalThink"
+				{
+					"ApplyModifier"
+					{
+						"Duration"			"0.9"
+						"ModifierName"		"modifier_vines_buff"	//添加相位状态，使其不会卡住英雄
+						"Target"
+						{
+							"Center" "TARGET"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+						}
+					}
+					"Damage"
+					{
+						"Type" 		"DAMAGE_TYPE_MAGICAL"
+						"Damage" 	"%damage"
+						"Target"
+						{
+							"Center" "TARGET"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+						}
+					}
+					"Damage"
+					{
+						"Type" 		"DAMAGE_TYPE_PHYSICAL"
+						"Damage" 	"%self_damage"
+						"Target"	"TARGET"
+					}
+				}
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"			//发光，缠绕
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						// "EffectLifeDurationScale"	"1"
+					}
+					"FireEffect"
+					{
+						"Target"			"CASTER"
+						"EffectName"		"particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPointEntities"	//=============施法者和目标中间的连线
+						{
+							"CASTER"		"attach_attack1"	//"attach_hitloc"
+							"TARGET"		"attach_hitloc"	//"attach_mouth"
+						}
+					}
+					"ApplyModifier"
+					{
+						"Target" 			"TARGET"
+						"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+					}
+				}
+				"States"
+				{
+
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"	//小地图不显示
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"	//无法选取状态
+				}
+			}
+
+			"modifier_vines_buff"
+			{
+				"IsDebuff"				"1"
+
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"			//缠绕
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"					"MODIFIER_STATE_VALUE_ENABLED"		//被缠绕状态
+				}
+			}
+
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_bonus"		"250 350 450 550"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"self_damage"		"20 30 35 40"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"50 75 100 125"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"220"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"think_interval"	"1.0"
+			}
+		}
+	}
+
+
+
+
+//=================================================================================================================
+// ==============================================【普通单位】==============================================
+//=================================================================================================================
+
+	//=================================================================================================================
+	// 生命恢复光环
+	//=================================================================================================================
+	"kata_heal_area"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "crystal_maiden_brilliance_aura"
+
+		"Modifiers"
+		{
+			"fountain_heal_a"
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				"Aura"					"fountain_heal_area"
+				"Aura_Radius"			"600" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+			}
+
+			"fountain_heal_area"
+			{
+				"EffectName"			"particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				"EffectAttachType"		"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "3" //百分比恢复生命
+					//"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"200"//		
+				}
+			}
+			
+			"fountain_heal_invulnerable"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"EffectName"			"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"//光环特效
+				"EffectAttachType"		"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"	//无敌
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"	//隐藏生命条
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"//小地图不显示
+				}
+			}                                           
+		}
+
+		//"AbilitySpecial"
+		//{	
+		//	"01"
+		//	{
+		//		"var_type"			"FIELD_INTEGER"
+		//		""			"123"
+		//	}			
+		//}
+	}
+
+	//=================================================================================================================
+	// 魔法恢复光环
+	//=================================================================================================================
+	"kata_mana_area"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "crystal_maiden_brilliance_aura"
+
+		"Modifiers"
+		{
+			"fountain_mana_a"
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				"Aura"					"fountain_mana_area"
+				"Aura_Radius"			"600" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+			}
+
+			"fountain_mana_area"
+			{
+				"EffectName" 			"particles/items_fx/healing_clarity.vpcf"//恢复特效
+				"EffectAttachType"		"follow_origin"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //百分比恢复生命
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"400"//百分比恢复魔法
+				}
+			}
+			
+			"fountain_mana_invulnerable"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"EffectName"			"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"//光环特效
+				"EffectAttachType"		"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"	//无敌
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"	//隐藏生命条
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"//小地图不显示
+				}
+			}                                           
+		}
+
+		//"AbilitySpecial"
+		//{	
+		//	"01"
+		//	{
+		//		"var_type"			"FIELD_INTEGER"
+		//		""			"123"
+		//	}			
+		//}
+	}
+
+	//=================================================================================================================
+	// 治疗守卫技能
+	//=================================================================================================================
+	"kata_healing_ward_area"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "juggernaut_healing_ward"
+
+		"precache" //预载
+		{
+			"particle_folder"			"particles/units/heroes/hero_juggernaut"//预载特效文件夹
+		}
+		"Modifiers"
+		{
+			"healing_ward_a"
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				//"EffectName" 			"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"//特效
+				//"EffectAttachType"		"follow_overhead"	//改改？
+				"Aura"					"healing_ward_area"
+				"Aura_Radius"			"%radius" 	//！！光环范围
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+				//"Duration"				"%duration"
+
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"TARGET"
+						"Duration"			"0.1"				//0.1秒后移除 相位状态
+						"ModifierName"		"modifier_phased"	//添加相位状态，使其不会卡住英雄
+					}
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"Target"			"TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+							"TARGET"	"flame_attachment"	//特效上的那团火
+						}
+					}
+					"AttachEffect" //范围光圈
+					{
+						"EffectName"		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_base.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 5"
+							"01" "%radius 1 1"
+						}
+					}
+				}
+			}
+
+			"healing_ward_area"
+			{
+				"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "4" //最大生命值百分比 ，恢复生命
+					//"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"200"//		
+				}
+
+			}
+			
+			"healing_ward_invulnerable"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				//"EffectName" 			"particles/units/heroes/hero_juggernaut/portrait_healingward_flame.vpcf"//特效
+				//"EffectAttachType"		"follow_overhead"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"    "MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					//"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"	//无敌
+					//"MODIFIER_STATE_NO_HEALTH_BAR"   "MODIFIER_STATE_VALUE_ENABLED"	//隐藏生命条
+					"MODIFIER_STATE_NOT_ON_MINIMAP"   "MODIFIER_STATE_VALUE_ENABLED"//小地图不显示
+				}
+			}                                       
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"30.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 雇佣兵
+	//=================================================================================================================
+	//=================================================================================================================
+	// 豺狼人刺客 远程攻击减速
+	//=================================================================================================================
+	"gnoll_assassin_orb"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"gnoll_assassin_envenomed_weapon"
+		"MaxLevel"	"1"
+
+		// "precache" //预载
+		// {
+		// 	"particle_folder"			"particles/neutral_fx/"							//预载特效文件夹
+		// }
+
+		"Modifiers"
+		{
+			"Modifier_gnoll_assassin_orb"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"TARGET"
+						"ModifierName"		"Modifier_gnoll_assassin_orb_slow"
+						"Duration"			"%duration"
+					}
+				}
+			}
+			"Modifier_gnoll_assassin_orb_slow"
+			{
+				"IsDebuff"	"1"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/neutral_fx/gnoll_poison_debuff.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"TARGET"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+			}
+		}
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-100"	//减速
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5"	//持续时间
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 石头人 攻击抛掷
+	//=================================================================================================================
+	"rock_golem_orb"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"brewmaster_earth_hurl_boulder"
+		"MaxLevel"	"1"
+
+		// "precache" //预载
+		// {
+		// 	"particle_folder"			"particles/neutral_fx/"							//预载特效文件夹
+		// }
+
+		"Modifiers"
+		{
+			"Modifier_rock_golem_orb"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnCreated"		//添加相位状态
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"modifier_phased"
+					}
+				}
+
+				"OnAttackStart"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"Modifier_rock_golem_act"
+						"Duration"			"2.5"
+					}
+				}
+
+				"OnAttackLanded"
+				{
+					"Knockback"			//击退
+					{
+						"Target"				"TARGET"
+						"Center"				"CASTER"
+						"Duration"				"0.7"		//滞空时间
+						"Distance"				"-500"		//距离
+						"Height"				"300"		//高度
+						"ShouldStun"			"0"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-50"	//减少自身攻击速度
+				}
+			}
+			"Modifier_rock_golem_act"
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+			}
+		}
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"-500"	//距离
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.7"	//滞空时间
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 昆卡潮汐小Boss
+	//=================================================================================================================
+	//=================================================================================================================
+	// Acid Spray 小Boss 酸性喷雾，死亡自爆并击退周围的单位
+	//=================================================================================================================
+	"boss_acid_spray"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"alchemist_acid_spray"
+		// "MaxLevel"						"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		// "AbilityCastPoint"				"0.2"
+		// "AbilityCastRange"				"900"
+	
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds/ability_acid_spray.vsndevts"
+		}
+		
+		"OnOwnerDied"
+		{
+			"CreateThinker"
+			{
+				"ModifierName"			"boss_acid_spray_thinker"
+				"Target"				"CASTER"
+			}
+			
+			"FireEffect"
+			{
+				"Target"				"CASTER"
+				"EffectName"			"particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"EffectRadius"			"%radius"
+				"EffectDurationScale"	"1"
+				"EffectLifeDurationScale" "1"
+				"EffectColorA"			"25 150 25"
+				"EffectColorB"			"25 150 25"
+			}
+		
+			"Damage"
+			{
+				"Type"					"DAMAGE_TYPE_PHYSICAL"
+				"Damage"				"%damage_explode"
+				"Target"
+				{
+					"Center"			"CASTER"
+					"Radius"			"%radius"
+					"Teams"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			}
+			
+			"Knockback"
+			{
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Radius"	"%radius"
+				}
+				"Center"	"CASTER"
+				"Duration"	"0.75"
+				"Distance"	"%radius + 25"
+				"Height"	"175"
+			}
+			
+			"FireSound"
+			{
+				"EffectName"		"Ability.AcidSpray"
+				"Target"			"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"boss_acid_spray_thinker"
+			{
+				"Aura"					"boss_acid_spray_armor_reduction_aura"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Duration"				"%duration"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%radius 1 1"
+							"15" "28 225 28"
+							"16" "1 0 0"
+						}
+					}
+				}
+			}
+
+			"boss_acid_spray_armor_reduction_aura"
+			{
+				"IsDebuff"		"1"
+				"IsPurgable"	"0"
+				"EffectName"	"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+				"ThinkInterval"	"%tick_rate"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Type"		"DAMAGE_TYPE_PHYSICAL"
+						"Damage"	"%damage"
+						"Target"	"TARGET"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
+				}
+			}
+			
+			"boss_acid_spray_fx"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_alchemist/alchemist_acid_spray_f.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%radius-100 1 1"
+							"15" "28 225 28"
+							"16" "0.5 0 0"
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"CASTER"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%radius 1 1"
+							"15" "28 225 28"
+							"16" "1 0 0"
+						}
+					}
+				}
+			}
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_explode"		"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"80"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_rate"				"1"
+			}
+
+		}
+	}
+
+	//=================================================================================================================
+	// Slow down 小boss ，减速光环 退化光环
+	//=================================================================================================================
+	"boss_slow_down"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"broodmother_spin_web"
+		// "MaxLevel"						"1"
+
+
+		"Modifiers"
+		{
+			"boss_slow_down_aura"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"Aura"					"boss_slow_down_m"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+				// "Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_degen_aura_b.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%radius 1 1"
+							"15" "28 225 28"
+							"16" "1 0 0"
+						}
+					}
+				}
+			}
+
+			"boss_slow_down_m"
+			{
+				"IsDebuff"		"1"
+				"IsPurgable"	"0"
+				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_degeneration_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      	"%movespeed"
+				}
+			}
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed"				"-30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"225"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// blow 小boss ，重击
+	//=================================================================================================================
+	"boss_blow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"centaur_double_edge"
+		// "MaxLevel"						"1"
+
+
+		"Modifiers"
+		{
+			"boss_blow_m"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+
+				"EffectName"		"particles/units/heroes/hero_magnataur/magnataur_empower.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnAttackStart"
+				{
+					"Random"
+					{
+						"Chance" 			"%stun_chance"
+						"PseudoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target" 			"CASTER"
+								"ModifierName"		"boss_blow_stun"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target" 			"CASTER"
+								"ModifierName"		"boss_blow_critical_strike"
+							}
+						}
+					}
+				}
+			}
+
+			"boss_blow_stun"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"OnAttackLanded"
+				{
+					"Stun"
+					{
+						"Target"		"TARGET"
+						"Duration"		"%stun_duration"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"boss_blow_stun"
+					}
+				}
+			}
+			"boss_blow_critical_strike"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"boss_blow_critical_strike"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"      	"%critical_strike"
+				}
+			}
+
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stun_chance"			"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"critical_strike"		"150"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Spell resistance 小boss ，法术抵抗
+	//=================================================================================================================
+	"boss_spell_resistance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"antimage_spell_shield"
+		// "MaxLevel"						"1"
+
+
+		"Modifiers"
+		{
+			"boss_blow_m"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+
+				"EffectName"			"particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"      	"%spell_resistance"	//魔法抗性
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"			"%armor" 			//护甲
+				}
+			}
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_resistance"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"-15"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// 昆卡潮汐AI大Boss 攻击溅射技能
+	//=================================================================================================================
+	"Boss_CleaveAttack"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"magnataur_empower"	//图标
+		"MaxLevel"						"1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value1"				"75"//增加攻击力
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value2"				"10"//溅射伤害
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Value3"				"150"//作用范围
+			}
+		}
+
+		"Modifiers"
+		{
+			"Modifiers_Boss_CleaveAttack_add"
+			{
+				"IsHidden"				"0"
+				"Passive"				"1"
+				"Duration"				"120"	//boss 2分钟后获得溅射攻击
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"ModifierName"		"Modifiers_Boss_CleaveAttack"
+					}
+					"ApplyModifier"
+					{
+						"Target" 			"CASTER"
+						"Duration"			"120"	//每2分钟获得升级
+						"ModifierName"		"Modifiers_Boss_CleaveAttack_add"
+					}
+				}
+			}
+			"Modifiers_Boss_CleaveAttack"
+			{
+				"IsHidden"				"1"
+				"Passive"				"0"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"	//效果可叠加
+				//"EffectName" "particles/econ/courier/courier_trail_international_2013/courier_international_2013.vpcf"//恢复特效
+				//"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%Value1" 	//增加攻击力
+				}
+				"OnAttackLanded"	//攻击到某个目标时
+				{
+					"CleaveAttack"	//分裂攻击
+					{
+						"CleavePercent"				"%Value2"	//溅射伤害百分比
+						"CleaveRadius"				"%Value3"	//作用范围
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 昆卡做动作技能
+	//=================================================================================================================
+	"kunkka_Animation"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"kunkka_x_marks_the_spot"
+
+		//"AbilitySpecial"
+		//{	
+		//	"01"
+		//	{
+		//		"var_type"			"FIELD_INTEGER"
+		//		""			"123"
+		//	}			
+		//}
+		"Modifiers"
+		{
+			"kunkka_Animation_Modifier"//赋予无敌等
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+					//"EffectName" "particles/econ/items/kunkka/kunkka_weapon_bladebiter/kunkka_tidebringer_bladebiter.vpcf"//特效
+					//"EffectAttachType"	"start_at_customorigin"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					// "MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	//无敌(0918更新后，无敌不能做动作)
+					"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//攻击免疫状态(类似无敌)
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"	//低的攻击优先级
+					// "MODIFIER_STATE_UNSELECTABLE"			"MODIFIER_STATE_VALUE_ENABLED"	//无法选取状态
+					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"	//隐藏生命条
+					"MODIFIER_STATE_NOT_ON_MINIMAP"			"MODIFIER_STATE_VALUE_ENABLED"//小地图不显示
+				}
+				// "Properties"
+				// {
+				// 	"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"				//所有物理攻击无效
+				// }
+			}
+
+			//====随机播放动作====
+			"kunkka_Animation_01w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_01"
+					}
+				}
+			}
+			"kunkka_Animation_01" //播放动作
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_SPAWN" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_02w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_03w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_02w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_02"
+					}
+				}
+			}
+			"kunkka_Animation_02" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"5.6" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_TELEPORT" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_03w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_04w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_03w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_03"
+					}
+				}
+			}
+			"kunkka_Animation_03" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.4" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_ATTACK" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_04w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_05w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_04w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_04"
+					}
+				}
+			}
+			"kunkka_Animation_04" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_4" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_05w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_06w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_05w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_05"
+					}
+				}
+			}
+			"kunkka_Animation_05" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_1" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_06w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_07w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_06w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_06"
+					}
+				}
+			}
+			"kunkka_Animation_06" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_3" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_07w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_01w"
+							}
+						}
+					}
+				}
+			}
+
+			"kunkka_Animation_07w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"kunkka_Animation_07"
+					}
+				}
+			}
+			"kunkka_Animation_07" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.4" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_ATTACK" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_01w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"kunkka_Animation_02w"
+							}
+						}
+					}
+				}
+			}
+
+
+		}//"Modifiers"结束
+	}// 昆卡做动作技能 结束
+
+
+	//=================================================================================================================
+	// 潮汐做动作技能
+	//=================================================================================================================
+	"tidehunter_Animation"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"kunkka_x_marks_the_spot"
+
+		//"AbilitySpecial"
+		//{	
+		//	"01"
+		//	{
+		//		"var_type"			"FIELD_INTEGER"
+		//		""			"123"
+		//	}			
+		//}
+		"Modifiers"
+		{
+			"tidehunter_Animation_Modifier"//赋予无敌等
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"	//魔法免疫
+					// "MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	//无敌(0918更新后，无敌不能做动作)
+					"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"	//攻击免疫状态(类似无敌)
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"	//低的攻击优先级
+					// "MODIFIER_STATE_UNSELECTABLE"			"MODIFIER_STATE_VALUE_ENABLED"	//无法选取状态
+					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"	//隐藏生命条
+					"MODIFIER_STATE_NOT_ON_MINIMAP"			"MODIFIER_STATE_VALUE_ENABLED"//小地图不显示
+				}
+				// "Properties"
+				// {
+				// 	"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"				//所有物理攻击无效
+				// }
+			}
+
+			//====随机播放动作====
+			"tidehunter_Animation_01w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_01"
+					}
+				}
+			}
+			"tidehunter_Animation_01" //播放动作
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_BRIDGE_DESTROY" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_02w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_03w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_02w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_02"
+					}
+				}
+			}
+			"tidehunter_Animation_02" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_BRIDGE_THREAT" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_03w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_04w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_03w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_03"
+					}
+				}
+			}
+			"tidehunter_Animation_03" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.4" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_ATTACK" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_04w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_05w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_04w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_04"
+					}
+				}
+			}
+			"tidehunter_Animation_04" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_4" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_05w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_06w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_05w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_05"
+					}
+				}
+			}
+			"tidehunter_Animation_05" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_1" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_06w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_07w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_06w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_06"
+					}
+				}
+			}
+			"tidehunter_Animation_06" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.2" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_3" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_07w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_01w"
+							}
+						}
+					}
+				}
+			}
+
+			"tidehunter_Animation_07w" //中断上一个动作，随后播放下一个动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"0.1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"tidehunter_Animation_07"
+					}
+				}
+			}
+			"tidehunter_Animation_07" //播放动作
+			{
+				// "Passive"	"1"
+				"IsHidden"	"1"
+				"Duration"	"1.4" //动作时间，25帧1秒
+				"OverrideAnimation"	"ACT_DOTA_ATTACK" //动作名称
+				"OnDestroy"
+				{
+					"Random"
+					{
+						"chance"	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_01w"
+							}
+						}
+						"OnFailure"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"tidehunter_Animation_02w"
+							}
+						}
+					}
+				}
+			}
+
+
+		}//"Modifiers"结束
+	}// 潮汐做动作技能 结束
+
+
+
+	//=================================================================================================================
+	// 停止不动X秒 触发
+	//=================================================================================================================
+	"kata_stop_move_good"	//昆卡的
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "juggernaut_healing_ward"
+
+		"Modifiers"
+		{
+			"keep_move_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"OnUnitMoved"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName" "stop_move_M"
+					}
+				}
+			}
+			"stop_move_M"
+			{
+				"IsHidden"				"1"
+				"Duration"				"3"		//===========持续时间
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"			"CASTER"
+						"ScriptFile"		"scripts/vscripts/create_unit_system.lua"
+						"Function"			"OnStopMove_Good"//===========函数名
+					}
+				}
+			}
+		}
+	}
+	"kata_stop_move_bad"		//潮汐的
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "juggernaut_healing_ward"
+
+		"Modifiers"
+		{
+			"keep_move_M"
+			{
+				"IsHidden"				"1"
+				"Passive"				"1"
+				"OnUnitMoved"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName" "stop_move_M"
+					}
+				}
+			}
+			"stop_move_M"
+			{
+				"IsHidden"				"1"
+				"Duration"				"3"		//===========持续时间
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"			"CASTER"
+						"ScriptFile"		"scripts/vscripts/create_unit_system.lua"
+						"Function"			"OnStopMove_Bad"//===========函数名
+					}
+				}
+			}
+		}
+	}
+
+
+}

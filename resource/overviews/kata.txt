@@ -1,0 +1,8 @@
+kata
+{
+	material materials/overviews/kata.vmat
+	pos_x -3520
+	pos_y 3520
+	scale 6.875
+}
+
