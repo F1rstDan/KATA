@@ -25,4 +25,21 @@
     {
         "hostID"       "byte"  // The ID of the player who is the host
     }
+
+	//面板数据
+	"KATA_Summary"
+	{
+		"nRoundNumber"					"short"
+		"nKunkkaAlive"					"short"
+		"nKunkkaLevel"					"short"
+		"nTidehunterAlive"				"short"
+		"nTidehunterLevel"				"short"
+		"nRoundTimePercent"				"float"
+	}
+	//回合倒数,已无用
+	// "KATA_RoundTime"
+	// {
+	// 	"nRoundTimeTween"				"short"
+	// }
+
 }

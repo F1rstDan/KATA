@@ -195,6 +195,10 @@ function KATA_CreateUnitSystemTime()
 			KATA_CreateUnitSystem()			--启动刷兵
 			KUNKKA_IS_ADDXP 	= false		--重新启动加金额技能
 			TIDEHUNTER_IS_ADDXP = false
+
+			-- print('[KATARoundTime] = '..GAME_ROUND_TIME)
+			-- local KATARoundTime = { nRoundTimeTween = GAME_ROUND_TIME }
+			-- FireGameEvent( "KATA_RoundTime", KATARoundTime )
 		end
 
 		if TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS == 0 and not KUNKKA_IS_ADDXP and GAME_ROUND ~= 0 then	--如果昆卡方清场了 and 昆卡还没增加过经验 and 回合数不等于0(游戏重新开始) 
@@ -239,11 +243,6 @@ function KATA_CreateUnitSystem()
 		KATA_CreateUnit_Boss( KUNKKA_ADD_BOSS - KUNKKA_ALIVE_BOSS,"kunkka")
 		KATA_CreateUnit_Mini( TIDEHUNTER_ADD_MINI - TIDEHUNTER_ALIVE_MINI,"tidehunter")
 		KATA_CreateUnit_Boss( TIDEHUNTER_ADD_BOSS - TIDEHUNTER_ALIVE_BOSS,"tidehunter")
-
-
-		GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS )
-		GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_BADGUYS, KUNKKA_ALIVE_MINI + KUNKKA_ALIVE_BOSS)
-
 end
 
 -- --------------------------------------------------------------------------------

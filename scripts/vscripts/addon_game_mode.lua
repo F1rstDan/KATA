@@ -57,6 +57,21 @@ function Precache( context )
 	PrecacheResource( "model", "models/heroes/kunkka/kunkka_hands.vmdl", context )			--昆卡
 	-- PrecacheResource( "model", "models/heroes/tidehunter/tidehunter.vmdl", context )		--潮汐
 	PrecacheResource( "model", "models/heroes/tidehunter/tidehunter_anchor.vmdl", context )	--潮汐
+
+	--=========物品
+	PrecacheResource( "particle_folder", "particles/econ/courier/courier_cluckles", context )	--传送口哨
+	PrecacheResource( "particle_folder", "particles/econ/courier/courier_drodo", context )		--传送口哨
+	PrecacheResource( "soundfile", "soundevents/game_sounds_greevils.vsndevts", context )		--传送口哨 预载声音文件
+
+	--=========技能
+	PrecacheResource( "particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", context )	--额外金币
+	PrecacheResource( "soundfile", "soundevents/game_sounds_ui.vsndevts", context )										--额外金币
+
+	PrecacheResource( "particle_folder", "particles/units/heroes/hero_pugna", context )						--小精灵大招吸血
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )	--小精灵大招吸血
+
+	PrecacheResource( "particle_folder", "particles/units/heroes/hero_crystalmaiden", context )				--卓尔游侠用冰女特效
+	PrecacheResource( "particle_folder", "particles/units/heroes/hero_axe", context )						--卓尔游侠用斧王特效
 end
 
 -- function Precache( context )
@@ -96,12 +111,12 @@ end
 --     PrecacheResource( "particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", context )	--额外金币
 --     PrecacheResource( "soundfile", "soundevents/game_sounds_ui.vsndevts", context )										--额外金币
 
--- 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_pugna", context )						--小精灵大招吸血
--- 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )	--小精灵大招吸血
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_pugna", context )						--小精灵大招吸血
+-- 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )	--小精灵大招吸血
 
--- 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_crystalmaiden", context )				--卓尔游侠用冰女特效
--- 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_axe", context )						--卓尔游侠用斧王特效
--- end
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_crystalmaiden", context )				--卓尔游侠用冰女特效
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_axe", context )						--卓尔游侠用斧王特效
+-- 	end
 
 --------------------------------------------------------------------------------
 
@@ -547,34 +562,53 @@ end
 
 
 ---------------------------------------------------------------------------
--- Simple scoreboard using debug text 简易计分板
+-- Simple scoreboard using debug text 计分板
 ---------------------------------------------------------------------------
 function KATAGameMode:UpdateScoreboard()
 
-	UTIL_ResetMessageTextAll()
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRound", 255, 255, 255, 150, {  value = GAME_ROUND } ) --回合数
-	if GAME_ROUND_COUNTDOWN < 0 then
-		UTIL_MessageTextAll_WithContext( "#ScoreboardTime", 255, 255, 255, 150, {  value = 0 } )
-	else
-		UTIL_MessageTextAll_WithContext( "#ScoreboardTime", 255, 255, 255, 150, {  value = GAME_ROUND_COUNTDOWN } )--回合倒数时间 --value = GAME_ROUND ,
-	end
-	UTIL_MessageTextAll_WithContext( "#ScoreboardTitle_kunkka", 50, 220, 230, 255, { value = KUNKKA_WIN } )
-	UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_mini", 50, 220, 230, 150, { value = TIDEHUNTER_ALIVE_MINI } )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_boss", 50, 220, 230, 150, { value = TIDEHUNTER_ALIVE_BOSS } )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_level", 50, 220, 230, 150, { value = TIDEHUNTER_LEVEL } )
-	UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
+	---------------------------------------------------------------------------
+	-- 旧版的简易计分板
+	---------------------------------------------------------------------------
+	-- UTIL_ResetMessageTextAll()
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRound", 255, 255, 255, 150, {  value = GAME_ROUND } ) --回合数
+	-- if GAME_ROUND_COUNTDOWN < 0 then
+	-- 	UTIL_MessageTextAll_WithContext( "#ScoreboardTime", 255, 255, 255, 150, {  value = 0 } )
+	-- else
+	-- 	UTIL_MessageTextAll_WithContext( "#ScoreboardTime", 255, 255, 255, 150, {  value = GAME_ROUND_COUNTDOWN } )--回合倒数时间 --value = GAME_ROUND ,
+	-- end
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardTitle_kunkka", 50, 220, 230, 255, { value = KUNKKA_WIN } )
+	-- UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_mini", 50, 220, 230, 150, { value = TIDEHUNTER_ALIVE_MINI } )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_boss", 50, 220, 230, 150, { value = TIDEHUNTER_ALIVE_BOSS } )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_level", 50, 220, 230, 150, { value = TIDEHUNTER_LEVEL } )
+	-- UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
 
-	UTIL_MessageTextAll_WithContext( "#ScoreboardTitle_tidehunter", 50, 230, 150, 255, { value = TIDEHUNTER_WIN } )
-	UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_mini", 50, 230, 150, 150, { value = KUNKKA_ALIVE_MINI } )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_boss", 50, 230, 150, 150, { value = KUNKKA_ALIVE_BOSS } )
-	UTIL_MessageTextAll_WithContext( "#ScoreboardRow_level", 50, 230, 150, 150, { value = KUNKKA_LEVEL } )
-	UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardTitle_tidehunter", 50, 230, 150, 255, { value = TIDEHUNTER_WIN } )
+	-- UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_mini", 50, 230, 150, 150, { value = KUNKKA_ALIVE_MINI } )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_boss", 50, 230, 150, 150, { value = KUNKKA_ALIVE_BOSS } )
+	-- UTIL_MessageTextAll_WithContext( "#ScoreboardRow_level", 50, 230, 150, 150, { value = KUNKKA_LEVEL } )
+	-- UTIL_MessageTextAll( "#ScoreboardSeparator", 255, 255, 255, 80 )
 
+	-- 显示存活数,在队伍得分上
+	-- GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS )
+	-- GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_BADGUYS, KUNKKA_ALIVE_MINI + KUNKKA_ALIVE_BOSS)
+	---------------------------------------------------------------------------
+	---------------------------------------------------------------------------
+
+	-- AS传送数据，用UI显示计分板
+	local KATASummary = {
+		nRoundNumber = GAME_ROUND,
+		nKunkkaAlive = KUNKKA_ALIVE_MINI + KUNKKA_ALIVE_BOSS,
+		nKunkkaLevel = KUNKKA_LEVEL,
+		nTidehunterAlive = TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS,
+		nTidehunterLevel = TIDEHUNTER_LEVEL,
+		nRoundTimePercent = GAME_ROUND_COUNTDOWN/30
+	}
+	FireGameEvent( "KATA_Summary", KATASummary )
 	-- 显示队伍得分
-	GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS )
-	GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_BADGUYS, KUNKKA_ALIVE_MINI + KUNKKA_ALIVE_BOSS)
+	GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_GOODGUYS, KUNKKA_WIN )
+	GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_BADGUYS, TIDEHUNTER_WIN)
 
 	return 0.5
 end
