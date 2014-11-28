@@ -18,7 +18,7 @@
     "2"
     {
         "File"      "KATAUI"
-        "Depth"     "10"
+        "Depth"     "1"
     }
 }
 

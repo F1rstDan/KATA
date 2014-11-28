@@ -41,5 +41,8 @@
 	// {
 	// 	"nRoundTimeTween"				"short"
 	// }
-
+	"KATA_Shop"
+	{
+		"nShopCost"						"string"
+	}
 }

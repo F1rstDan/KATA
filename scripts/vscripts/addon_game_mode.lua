@@ -82,41 +82,41 @@ end
 -- 			PrecacheResource( "particle", "*.vpcf", context )
 -- 			PrecacheResource( "particle_folder", "particles/folder", context )
 -- 	]]
--- 	--=========单位
---     PrecacheResource( "model", "models/heroes/kunkka/kunkka.vmdl", context )		--昆卡
---     PrecacheResource( "model", "models/heroes/kunkka/kunkka_feet.vmdl", context )	--昆卡
---     PrecacheResource( "model", "models/heroes/kunkka/kunkka_hair.vmdl", context )	--昆卡
---     PrecacheResource( "model", "models/heroes/kunkka/kunkka_hands.vmdl", context )	--昆卡
---     PrecacheResource( "model", "models/heroes/tidehunter/tidehunter.vmdl", context )		--潮汐
---     PrecacheResource( "model", "models/heroes/tidehunter/tidehunter_anchor.vmdl", context )	--潮汐
---     PrecacheResource( "model", "models/ghostanim.vmdl", context ) --空盒子
+-- 		--=========单位
+-- 		PrecacheResource( "model", "models/heroes/kunkka/kunkka.vmdl", context )		--昆卡
+-- 		PrecacheResource( "model", "models/heroes/kunkka/kunkka_feet.vmdl", context )	--昆卡
+-- 		PrecacheResource( "model", "models/heroes/kunkka/kunkka_hair.vmdl", context )	--昆卡
+-- 		PrecacheResource( "model", "models/heroes/kunkka/kunkka_hands.vmdl", context )	--昆卡
+-- 		PrecacheResource( "model", "models/heroes/tidehunter/tidehunter.vmdl", context )		--潮汐
+-- 		PrecacheResource( "model", "models/heroes/tidehunter/tidehunter_anchor.vmdl", context )	--潮汐
+-- 		PrecacheResource( "model", "models/ghostanim.vmdl", context ) --空盒子
 
---     PrecacheResource( "particle_folder", "particles/units/heroes/hero_alchemist/", context )		--小Boss，酸性喷雾，炼金
---     PrecacheResource( "particle_folder", "particles/units/heroes/hero_omniknight/", context )		--小Boss，退化光环，全能骑士
---     PrecacheResource( "particle_folder", "particles/units/heroes/hero_magnataur/", context )		--小Boss，重击，猛犸
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_alchemist/", context )		--小Boss，酸性喷雾，炼金
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_omniknight/", context )		--小Boss，退化光环，全能骑士
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_magnataur/", context )		--小Boss，重击，猛犸
 
---     PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl", context )	--豺狼人刺客
+-- 		PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl", context )	--豺狼人刺客
 
---     --=========物品
---     PrecacheItemByNameSync( "item_tombstone", context )			--复活墓碑
---     PrecacheResource( "model", "models/heroes/juggernaut/jugg_healing_ward.mdl", context )		--治疗守卫
---     PrecacheResource( "particle_folder", "particles/units/heroes/hero_juggernaut", context )	--治疗守卫
---     PrecacheResource( "particle_folder", "particles/econ/courier/courier_cluckles", context )	--传送口哨
---     PrecacheResource( "particle_folder", "particles/econ/courier/courier_drodo", context )		--传送口哨
---     PrecacheResource( "soundfile", "soundevents/game_sounds_greevils.vsndevts", context )		--传送口哨 预载声音文件
---     --=========提升单位物品
---     -- PrecacheResource( "particle_folder", "particles/base_attacks/", context )		--提升我方单位攻击力
+-- 		--=========物品
+-- 		PrecacheItemByNameSync( "item_tombstone", context )			--复活墓碑
+-- 		PrecacheResource( "model", "models/heroes/juggernaut/jugg_healing_ward.mdl", context )		--治疗守卫
+-- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_juggernaut", context )	--治疗守卫
+-- 		PrecacheResource( "particle_folder", "particles/econ/courier/courier_cluckles", context )	--传送口哨
+-- 		PrecacheResource( "particle_folder", "particles/econ/courier/courier_drodo", context )		--传送口哨
+-- 		PrecacheResource( "soundfile", "soundevents/game_sounds_greevils.vsndevts", context )		--传送口哨 预载声音文件
+-- 		--=========提升单位物品
+-- 		PrecacheResource( "particle_folder", "particles/base_attacks/", context )		--提升我方单位攻击力
 
---     --=========技能
---     PrecacheResource( "particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", context )	--额外金币
---     PrecacheResource( "soundfile", "soundevents/game_sounds_ui.vsndevts", context )										--额外金币
+-- 		--=========技能
+-- 		PrecacheResource( "particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", context )	--额外金币
+-- 		PrecacheResource( "soundfile", "soundevents/game_sounds_ui.vsndevts", context )										--额外金币
 
 -- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_pugna", context )						--小精灵大招吸血
 -- 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )	--小精灵大招吸血
 
 -- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_crystalmaiden", context )				--卓尔游侠用冰女特效
 -- 		PrecacheResource( "particle_folder", "particles/units/heroes/hero_axe", context )						--卓尔游侠用斧王特效
--- 	end
+-- end
 
 --------------------------------------------------------------------------------
 
@@ -156,8 +156,9 @@ function KATAGameMode:InitGameMode()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( KATAGameMode, "OnGameRulesStateChange" ), self )
 	-- GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", TIME_PRE_GAME ) --游戏正在开始的一刻
 	--玩家进入游戏事件
-	-- ListenToGameEvent( "player_spawn", Dynamic_Wrap( KATAGameMode, "OnPlayerSpawn" ), self )
+	ListenToGameEvent( "player_spawn", Dynamic_Wrap( KATAGameMode, "OnPlayerSpawn" ), self )
 	User:RegistEvents()
+	UIShopSystem:RegistEvents()
 
 	--英雄出生时，给予物品
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( KATAGameMode, "OnNPCSpawned" ), self )
@@ -179,9 +180,6 @@ function KATAGameMode:OnPlayerSpawn( event )
 	local userid = event.userid
 	-- local player = PlayerResource:GetPlayer(event.userid -1)
 	local SteamID = PlayerResource:GetSteamAccountID(userid)
-	print( '[KATA_OnPlayerSpawn] OnPlayerSpawn'..event.userid )
-	print( '[KATA_OnPlayerSpawn] SteamAccountID = '..PlayerResource:GetSteamAccountID(userid -1) )
-	print( '[KATA_OnPlayerSpawn] SteamAccountID = '..PlayerResource:GetSteamAccountID(userid) )
 
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("show"),function()
 			for i=0,10 do
@@ -190,6 +188,16 @@ function KATAGameMode:OnPlayerSpawn( event )
 			end
 			return nil
 	end,1)
+
+	-- AS传送数据，用UI显示商店
+	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("show"),function()
+		FireGameEvent( "KATA_Shop", 
+		{
+			nShopCost = UI_SHOP_COST_TABLE_String
+		})
+		print( UI_SHOP_COST_TABLE_String )
+		return nil
+	end,2)
 end
 
 
