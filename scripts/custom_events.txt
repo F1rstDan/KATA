@@ -25,7 +25,11 @@
     {
         "hostID"       "byte"  // The ID of the player who is the host
     }
-
+	"custom_error_show"
+	{
+		"player_ID"		"short"
+		"_error"		"string"
+	}//FireGameEvent( 'custom_error_show', { player_ID = pID, _error = "Type Your Error Here" } )
 	//面板数据
 	"KATA_Summary"
 	{
@@ -35,6 +39,7 @@
 		"nTidehunterAlive"				"short"
 		"nTidehunterLevel"				"short"
 		"nRoundTimePercent"				"float"
+		"nShopItemStock"				"string"
 	}
 	//回合倒数,已无用
 	// "KATA_RoundTime"
@@ -43,6 +48,7 @@
 	// }
 	"KATA_Shop"
 	{
+		"nShopItem"						"string"
 		"nShopCost"						"string"
 	}
 }

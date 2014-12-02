@@ -18,14 +18,14 @@
 
 	"sideshop2"
 	{
-		"item"		"item_kata_unit_attack"			// 提升单位攻击力
-		"item"		"item_kata_unit_lifesteal"		// 单位获得生命吸取能力
-		"item"		"item_kata_unit_health_regen"	// 提升单位生命恢复
-		"item"		"item_kata_unit_movespeed"		// 提升单位移动速度
-		"item"		"item_kata_unit_up"				// 升级单位
+		// "item"		"item_kata_unit_attack"			// 提升单位攻击力
+		// "item"		"item_kata_unit_lifesteal"		// 单位获得生命吸取能力
+		// "item"		"item_kata_unit_health_regen"	// 提升单位生命恢复
+		// "item"		"item_kata_unit_movespeed"		// 提升单位移动速度
+		// "item"		"item_kata_unit_up"				// 升级单位
 
-		"item"		"item_npc_gnoll_assassin"		// 雇佣兵 豺狼人刺客
-		"item"		"item_npc_rock_golem"			// 雇佣兵 石头人 远古岩石傀儡
+		// "item"		"item_npc_gnoll_assassin"		// 雇佣兵 豺狼人刺客
+		// "item"		"item_npc_rock_golem"			// 雇佣兵 石头人 远古岩石傀儡
 
 	}
 	

@@ -26,14 +26,15 @@
 		public var buttons:Vector.<MovieClip>; //商店的按钮s
 		public var ShopCost:Array; //商店价格
 		public var ShopItemName:Array; //物品名称
-		public var timerGetGold:Timer = new Timer(1000, 0); //检测玩家金钱的变化的时间
+		public var ShopItemStock:Array; //物品库存
+		public var timerGetGold:Timer = new Timer(250, 0); //检测玩家金钱的变化的时间,1000为1秒
 		
 		//构造函数, 通常会用加载完函数来代替 constructor, you usually will use onLoaded() instead
 		public function KATAUI() : void {
 			//商店按钮1-10
 			var _loc_1:MovieClip   =  null;
 			this.buttons   = new Vector.<MovieClip>;
-			this.buttons.push(this.UI_Shop.shopitem1);
+			this.buttons.push(this.UI_Shop.shopitem1); //从零开始
 			this.buttons.push(this.UI_Shop.shopitem2);
 			this.buttons.push(this.UI_Shop.shopitem3);
 			this.buttons.push(this.UI_Shop.shopitem4);
@@ -54,6 +55,8 @@
 			}
 			
 			this.ShopCost  = new  Array(); //商店价格
+			this.ShopItemName  = new  Array(); //物品名称
+			this.ShopItemStock  = new  Array(); //物品库存
 		}
 		
 		//这个函数被调用 this function is called when the UI is loaded
@@ -101,6 +104,8 @@
 			UI_Summary.TidehunterLevel.text = eventData.nTidehunterLevel;
 			
 			UI_Summary.timeout_bar.progress_mask.scaleX = eventData.nRoundTimePercent;
+			
+			this.ShopItemStock = eventData.nShopItemStock.split(",");//读取 商店库存,字符串
 		}
 		//因为倒数不会因为游戏暂停而暂停，所以放弃这个函数
 		//public function onShowRoundTimeTween( eventData:Object )
@@ -137,23 +142,29 @@
 		public function onShowShop( eventData:Object )
 		{
 			var _iii:int = 1;
-			var _nShopCost_temp:Array = eventData.nShopCost.split(",");
+			var _nShopCost_temp:Array = eventData.nShopCost.split(",");//读取 商店价格,字符串
 			var _mc:MovieClip = null;
 			trace("onShowShop");
-			trace("_nShopCost_temp" + _nShopCost_temp.length);
+			trace("_nShopCost_temp" + _nShopCost_temp.length);//12长度
 			
-			//读取 商店价格
-			while ( _iii <= _nShopCost_temp.length )
+			//读取 商店物品名称,字符串
+			this.ShopItemName = eventData.nShopItem.split(",");
+			//读取 商店价格，从字符串转成数字
+			while ( _iii <= _nShopCost_temp.length-2 )
 			{
-				this.ShopCost[_iii] = Number(_nShopCost_temp[_iii]);
+				this.ShopCost[_iii] = Number(_nShopCost_temp[_iii]); //从字符串转成数字
+				if( Number(_nShopCost_temp[_iii]) == 0) //如果数字是0，则隐藏
+				{
+					this.buttons[_iii-1].visible = false;
+				}
 				_iii++;
 			}
 			trace("onShowShop" + this.ShopCost[6]);
 			_iii = 1;
 			for each  ( _mc in this.buttons)
 			{
-				_mc.goldtext.text = this.ShopCost[_iii];	//价格
-				Globals.instance.LoadImage("images/ui/shopitem"+ _iii +".png",_mc.shopicon,false);	//图标
+				_mc.goldtext.text = this.ShopCost[_iii];	//设置价格
+				Globals.instance.LoadImage("images/ui/shopitem"+ _iii +".png",_mc.shopicon,false);	//设置图标
 				_iii++;
 			}
 			//this.setIcons();
@@ -178,9 +189,9 @@
 			{
 				_loc_2.gotoAndStop(2);
 				_loc_2.goldtext.text = _cost;
+				globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "item_" + this.ShopItemName[this.buttons.indexOf(_loc_2) +1]);	//显示技能说明文
 				//globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "venomancer_venomous_gale");	//显示技能说明文
 				//globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "item_npc_gnoll_assassin");	//显示技能说明文
-				//globals.Loader_gameend.gameAPI.ShowItemTooltip(stage.mouseX, stage.mouseY, "item_npc_gnoll_assassin");	//显示物品说明文
 			}
 			return;
 		}
@@ -192,6 +203,7 @@
 			 
 			_loc_2.gotoAndStop(1);
 			_loc_2.goldtext.text = _cost;
+			globals.Loader_rad_mode_panel.gameAPI.OnHideAbilityTooltip();
 			return;
 		}
 		public function onMouseDown(event:MouseEvent)
@@ -200,12 +212,16 @@
 			var _loc_2:* =  event.currentTarget  as MovieClip;
 			var _cost:int = _loc_2.goldtext.text
 			 
-			trace("" + (this.buttons.indexOf(_loc_2) +1)); //this.buttons.indexOf(_loc_2) +1,当前按钮的序号
+			trace("[buttonsN] =" + (this.buttons.indexOf(_loc_2) +1)); //this.buttons.indexOf(_loc_2) +1,当前按钮的序号
+			trace("[ShopItemName] =" + this.ShopItemName[this.buttons.indexOf(_loc_2) +1]);
+			trace("[ShopItemCost] =" + this.ShopCost[this.buttons.indexOf(_loc_2) +1]);
 			this.gameAPI.SendServerCommand("kata_shop_buy " + (this.buttons.indexOf(_loc_2) +1) );
 			 
 			_loc_2.gotoAndStop(3);
 			_loc_2.goldtext.text = _cost;
 			this.globals.GameInterface.PlaySound("General.ButtonClick");
+			//timerGetGold.reset();
+			//timerGetGold.start();
 			return;
 		}
 		public  function onMouseUp(event:MouseEvent)
@@ -236,7 +252,8 @@
 			{
 				_cost = _mc.goldtext.text
 				
-				if( _cost <= pGold ) {
+				//如果物品金额小于玩家金钱， 物品库存大于等于1。
+				if( _cost <= pGold  &&  Number(this.ShopItemStock[this.buttons.indexOf(_mc) +1]) >= 1 ) {
 					Globals.instance.LoadImage("images/ui/frame_gold.png",_mc.frame,false);
 				}
 				else{

@@ -58,10 +58,13 @@ function Precache( context )
 	-- PrecacheResource( "model", "models/heroes/tidehunter/tidehunter.vmdl", context )		--潮汐
 	PrecacheResource( "model", "models/heroes/tidehunter/tidehunter_anchor.vmdl", context )	--潮汐
 
+	--=========UI
+	PrecacheResource( "soundfile", "soundevents/game_sounds_ui.vsndevts", context )		--按钮 预载声音文件
+
 	--=========物品
 	PrecacheResource( "particle_folder", "particles/econ/courier/courier_cluckles", context )	--传送口哨
 	PrecacheResource( "particle_folder", "particles/econ/courier/courier_drodo", context )		--传送口哨
-	PrecacheResource( "soundfile", "soundevents/game_sounds_greevils.vsndevts", context )		--传送口哨 预载声音文件
+	PrecacheResource( "soundfile", "soundevents/game_sounds_greevils.vsndevts", context )		--传送口哨 预载声音文件。。Item.GreevilWhistle
 
 	--=========技能
 	PrecacheResource( "particle", "particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf", context )	--额外金币
@@ -193,8 +196,10 @@ function KATAGameMode:OnPlayerSpawn( event )
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("show"),function()
 		FireGameEvent( "KATA_Shop", 
 		{
+			nShopItem = UI_SHOP_ITEM_TABLE_String,
 			nShopCost = UI_SHOP_COST_TABLE_String
 		})
+		print( UI_SHOP_ITEM_TABLE_String )
 		print( UI_SHOP_COST_TABLE_String )
 		return nil
 	end,2)
@@ -605,13 +610,16 @@ function KATAGameMode:UpdateScoreboard()
 	---------------------------------------------------------------------------
 
 	-- AS传送数据，用UI显示计分板
+	UIShopItemStock2String()
+
 	local KATASummary = {
 		nRoundNumber = GAME_ROUND,
 		nKunkkaAlive = KUNKKA_ALIVE_MINI + KUNKKA_ALIVE_BOSS,
 		nKunkkaLevel = KUNKKA_LEVEL,
 		nTidehunterAlive = TIDEHUNTER_ALIVE_MINI + TIDEHUNTER_ALIVE_BOSS,
 		nTidehunterLevel = TIDEHUNTER_LEVEL,
-		nRoundTimePercent = GAME_ROUND_COUNTDOWN/30
+		nRoundTimePercent = GAME_ROUND_COUNTDOWN/30,
+		nShopItemStock = UI_SHOP_ITEM_STOCK_TABLE_String
 	}
 	FireGameEvent( "KATA_Summary", KATASummary )
 	-- 显示队伍得分
