@@ -8,7 +8,8 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	
-	//输入一些从valve的库中提取的素材 import some stuff from the valve lib 
+	//输入一些从valve的库中提取的素材 import some stuff from the valve lib
+	import ValveLib.*;
 	import ValveLib.Globals;
 	import ValveLib.ResizeManager;
 	
@@ -92,6 +93,8 @@
 			
 			timerGetGold.addEventListener(TimerEvent.TIMER_COMPLETE, this.GoldChanged);
 			timerGetGold.start();
+			
+			this.globals.Loader_shop.movieClip.shop.recommendedTab.visible = false; //隐藏推荐装备
 			
 		}
 		
@@ -190,6 +193,7 @@
 				_loc_2.gotoAndStop(2);
 				_loc_2.goldtext.text = _cost;
 				globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "item_" + this.ShopItemName[this.buttons.indexOf(_loc_2) +1]);	//显示技能说明文
+				//globals.Loader_shop.gameAPI.ShowItemTooltip(stage.mouseX,stage.mouseY,"item_" + this.ShopItemName[this.buttons.indexOf(_loc_2) +1]);
 				//globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "venomancer_venomous_gale");	//显示技能说明文
 				//globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(stage.mouseX, stage.mouseY, "item_npc_gnoll_assassin");	//显示技能说明文
 			}
@@ -261,7 +265,7 @@
 				}
 				_iii++;
 			}
-			
+			this.globals.Loader_shop.movieClip.shop.recommendedTab.visible = false; //隐藏推荐装备
 		}
 		
 		

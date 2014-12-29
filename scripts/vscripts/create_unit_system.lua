@@ -358,7 +358,7 @@ function KATA_BossAddAbility(unit)
 		local ability = unit:GetAbilityByIndex(i)
 		if ability then
 			if ability:GetAbilityName() == abilityname then 
-				ability:UpgradeAbility()
+				ability:UpgradeAbility(true)
 				print( "[KATABossAddAbility] ability: "..ability:GetAbilityName() )
 			end
 		end
